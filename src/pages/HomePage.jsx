@@ -44,7 +44,8 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
         cursor: 'pointer',
         aspectRatio: '3/4',
         transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-        transform: hovered ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
+        // hover 才設 transform，避免 iOS Safari 在 CSS columns 中誤判 3D context 導致跳格
+        ...(hovered ? { transform: 'translateY(-8px) scale(1.02)' } : {}),
         boxShadow: hovered
           ? `0 28px 56px rgba(0,0,0,0.55), 0 0 0 1px ${palette.accent}33`
           : '0 6px 16px rgba(0,0,0,0.3)',
@@ -151,12 +152,12 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             transform: 'rotateY(180deg)',
             borderRadius: '20px',
             background: '#1c1c1e',
-            border: `2px solid ${cat?.color ?? '#ff6b1a'}44`,
+            border: `1px solid ${cat?.color ?? '#ff6b1a'}44`,
             display: 'flex',
             flexDirection: 'column',
-            padding: '18px',
+            padding: '12px',
             overflow: 'hidden',
-            gap: '10px',
+            gap: '6px',
           }}
         >
           {/* top accent */}
@@ -192,23 +193,31 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           </div>
 
           {/* names */}
-          <div style={{ flex: 1, minHeight: 0 }}>
+          <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div style={{
               fontFamily: 'var(--font-cjk)',
-              fontSize: 'clamp(15px, 2.5vw, 22px)',
+              fontSize: 'clamp(13px, 2.2vw, 20px)',
               fontWeight: 700,
               color: '#f5f5f7',
-              lineHeight: 1.2,
-              marginBottom: '4px',
+              lineHeight: 1.15,
+              marginBottom: '2px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
             }}>
               {route.zh}
             </div>
             <div style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '11px',
+              fontSize: '10px',
               color: '#86868b',
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             }}>
               {route.en}
             </div>
@@ -216,7 +225,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
 
           {/* SVG profile */}
           <div style={{ background: '#0e0e0e', borderRadius: '6px', overflow: 'hidden', flexShrink: 0 }}>
-            <svg viewBox="0 0 174 120" style={{ display: 'block', width: '100%', height: '52px' }} preserveAspectRatio="none">
+            <svg viewBox="0 0 174 120" style={{ display: 'block', width: '100%', height: '40px' }} preserveAspectRatio="none">
               <defs>
                 <linearGradient id={`hg-${route.id}`} x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor={cat?.color} stopOpacity="0.3" />
@@ -235,9 +244,9 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               { v: route.elev, u: 'm↑' },
               { v: `${route.avgGrade}%`, u: 'avg' },
             ].map(({ v, u }) => (
-              <div key={u} style={{ background: '#2a2a2c', borderRadius: '8px', padding: '6px 4px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 700, color: '#f5f5f7', lineHeight: 1 }}>{v}</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '9px', color: '#6e6e73', letterSpacing: '0.1em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
+              <div key={u} style={{ background: '#2a2a2c', borderRadius: '8px', padding: '4px 2px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '14px', fontWeight: 700, color: '#f5f5f7', lineHeight: 1 }}>{v}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '8px', color: '#6e6e73', letterSpacing: '0.08em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
               </div>
             ))}
           </div>
@@ -249,12 +258,12 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             rel="noopener noreferrer"
             onClick={e => e.stopPropagation()}
             style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
               fontFamily: 'var(--font-display)',
-              fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+              fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
               color: '#ff6b1a', background: 'rgba(255,107,26,0.08)',
-              border: '1px solid rgba(255,107,26,0.25)', borderRadius: '4px',
-              padding: '8px', textDecoration: 'none', flexShrink: 0,
+              border: '1px solid rgba(255,107,26,0.25)', borderRadius: '6px',
+              padding: '6px', textDecoration: 'none', flexShrink: 0,
               transition: 'background 0.15s',
             }}
           >
@@ -676,7 +685,7 @@ export default function HomePage() {
           <style>{`
             @media (max-width: 1024px) { .card-grid { columns: 3 !important; } }
             @media (max-width: 720px)  { .card-grid { columns: 2 !important; column-gap: 12px !important; } }
-            .flip-card-wrap { break-inside: avoid; margin-bottom: 16px; }
+            .flip-card-wrap { break-inside: avoid; margin-bottom: 16px; -webkit-column-break-inside: avoid; page-break-inside: avoid; }
           `}</style>
           {ROUTES.map(route => (
             <div key={route.id} className="flip-card-wrap">

@@ -623,6 +623,7 @@ export default function HomePage() {
           </div>
           <a
             href="/routes"
+            onClick={e => { e.preventDefault(); window.__navigate?.('routes') }}
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: '13px', fontWeight: 700, letterSpacing: '0.1em',

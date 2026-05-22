@@ -269,8 +269,111 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
   )
 }
 
+// ─── 8-card 3D coverflow carousel ──────────────────────────────────
+// 持續顯示在頁面上；按鈕觸發旋轉 2 秒後，正中央那張翻面顯示路線
+function CardCarousel({ rotation, phase, route }) {
+  const radius = 220 // 卡牌離旋轉中心的距離
+  const showRouteInfo = phase === 'flipping' || phase === 'show'
+
+  return (
+    <div style={{
+      width: '100%',
+      maxWidth: '260px',
+      aspectRatio: '3/4',
+      perspective: '1400px',
+      position: 'relative',
+      margin: '0 auto',
+    }}>
+      <div style={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        transformStyle: 'preserve-3d',
+        transition: 'transform 2s cubic-bezier(0.05, 0.7, 0.1, 1)',
+        transform: `rotateY(${rotation}deg)`,
+      }}>
+        {CARD_PALETTES.map((p, i) => {
+          const angle = (i / CARD_PALETTES.length) * 360
+          const isFront = i === 0
+          // 翻面 / show 階段：側邊卡牌淡出，只留中央
+          const sideFaded = !isFront && showRouteInfo
+          return (
+            <div key={i} style={{
+              position: 'absolute',
+              inset: 0,
+              transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+              transformStyle: 'preserve-3d',
+              opacity: sideFaded ? 0 : 1,
+              transition: 'opacity 0.5s ease',
+              pointerEvents: sideFaded ? 'none' : 'auto',
+            }}>
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
+                transform: (isFront && showRouteInfo) ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              }}>
+                {/* 正面 — Flip It */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  borderRadius: '20px',
+                  background: p.bg,
+                  padding: '20px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  overflow: 'hidden',
+                  boxShadow: '0 16px 40px rgba(0,0,0,0.45)',
+                }}>
+                  <div style={{
+                    fontFamily: 'Barlow Condensed, sans-serif',
+                    fontSize: 'clamp(48px, 7vw, 72px)',
+                    fontWeight: 900,
+                    lineHeight: 0.88,
+                    color: p.text,
+                    textTransform: 'uppercase',
+                    letterSpacing: '-0.03em',
+                  }}>Flip<br />It</div>
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '-30%',
+                    right: '-20%',
+                    width: '80%',
+                    paddingBottom: '80%',
+                    borderRadius: '50%',
+                    background: p.text,
+                    opacity: 0.06,
+                  }} />
+                </div>
+                {/* 背面 — 路線資訊（只渲染在正中央那張） */}
+                {isFront && route && (
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                  }}>
+                    <SurpriseCard route={route} palette={getPalette(route.id)} />
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 // ─── Surprise Me Spotlight ──────────────────────────────────────────
-function SurpriseSpotlight({ route, onNext, isAnimating }) {
+function SurpriseSpotlight({ route, onNext, phase, rotation }) {
   const palette = route ? getPalette(route.id) : CARD_PALETTES[0]
 
   return (
@@ -307,41 +410,8 @@ function SurpriseSpotlight({ route, onNext, isAnimating }) {
         今天騎哪條？
       </div>
 
-      {/* card area */}
-      <div style={{
-        width: '100%',
-        maxWidth: '260px',
-        position: 'relative',
-      }}>
-        {/* shuffle ghost cards behind */}
-        {[2, 1].map(i => (
-          <div key={i} style={{
-            position: 'absolute',
-            inset: 0,
-            borderRadius: '20px',
-            background: CARD_PALETTES[(i * 3) % CARD_PALETTES.length].bg,
-            opacity: isAnimating ? 0.5 - i * 0.15 : 0.18 - i * 0.06,
-            transform: `rotate(${isAnimating ? (i * 8 - 6) : (i * 3 - 2)}deg) translateY(${i * 4}px)`,
-            transition: 'all 0.35s cubic-bezier(0.23, 1, 0.32, 1)',
-          }} />
-        ))}
-
-        {route && (
-          <div style={{
-            position: 'relative',
-            animation: isAnimating ? 'cardLand 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards' : 'none',
-          }}>
-            <style>{`
-              @keyframes cardLand {
-                0%   { transform: translateY(-40px) rotate(-6deg) scale(0.88); opacity: 0; }
-                60%  { transform: translateY(6px) rotate(1deg) scale(1.02); opacity: 1; }
-                100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
-              }
-            `}</style>
-            <SurpriseCard route={route} palette={palette} />
-          </div>
-        )}
-      </div>
+      {/* persistent 3D carousel */}
+      <CardCarousel rotation={rotation} phase={phase} route={route} />
 
       {/* Surprise Me button */}
       <button
@@ -375,7 +445,7 @@ function SurpriseSpotlight({ route, onNext, isAnimating }) {
         Surprise Me
       </button>
 
-      {route && (
+      {phase === 'show' && (
         <div style={{
           fontFamily: 'Noto Sans TC, sans-serif',
           fontSize: '13px',
@@ -478,28 +548,29 @@ function SurpriseCard({ route, palette }) {
 export default function HomePage() {
   const [flipped, setFlipped] = useState({})
   const [surpriseRoute, setSurpriseRoute] = useState(null)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [phase, setPhase] = useState('idle') // idle | spinning | flipping | show
+  const [rotation, setRotation] = useState(0) // 每次點按累加 1080deg（3 圈）
   const usedIds = useRef(new Set())
 
   const handleSurprise = useCallback(() => {
-    if (isAnimating) return
+    if (phase === 'spinning' || phase === 'flipping') return
 
-    // reset after all 40 used
+    // 全部抽完後重置
     if (usedIds.current.size >= ROUTES.length) usedIds.current.clear()
 
     const remaining = ROUTES.filter(r => !usedIds.current.has(r.id))
     const pick = remaining[Math.floor(Math.random() * remaining.length)]
     usedIds.current.add(pick.id)
 
-    setIsAnimating(true)
-    setSurpriseRoute(null)
-
-    // brief blank pause → card lands
+    // 三段動畫：spinning 2s（轉 3 圈）→ flipping 0.7s（中央卡翻面）→ show
+    setSurpriseRoute(pick)
+    setRotation(r => r + 1080)
+    setPhase('spinning')
     setTimeout(() => {
-      setSurpriseRoute(pick)
-      setTimeout(() => setIsAnimating(false), 500)
-    }, 120)
-  }, [isAnimating])
+      setPhase('flipping')
+      setTimeout(() => setPhase('show'), 700)
+    }, 2000)
+  }, [phase])
 
   const toggleFlip = (id) => {
     setFlipped(prev => ({ ...prev, [id]: !prev[id] }))
@@ -564,7 +635,8 @@ export default function HomePage() {
           <SurpriseSpotlight
             route={surpriseRoute}
             onNext={handleSurprise}
-            isAnimating={isAnimating}
+            phase={phase}
+            rotation={rotation}
           />
         </div>
       </section>

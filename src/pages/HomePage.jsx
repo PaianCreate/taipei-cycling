@@ -387,7 +387,6 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       gap: '96px',
       padding: '80px 24px 64px',
       position: 'relative',
-      overflow: 'hidden',
     }}>
       {/* bg glow */}
       <div style={{
@@ -633,7 +632,7 @@ export default function HomePage() {
 
       {/* ── Section 1: Surprise Me ── */}
       <section style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', background: '#141416' }}>
-        <div style={{ maxWidth: '480px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <SurpriseSpotlight
             route={surpriseRoute}
             onNext={handleSurprise}

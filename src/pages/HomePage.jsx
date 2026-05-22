@@ -698,7 +698,7 @@ export default function HomePage() {
         textAlign: 'center',
       }}>
         <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '11px', color: '#48484a', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-          40 Routes · Taipei Cycling · 台北公路車
+          40 Routes to Nowhere
         </span>
       </footer>
     </div>

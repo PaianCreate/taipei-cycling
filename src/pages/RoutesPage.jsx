@@ -69,7 +69,7 @@ export default function RoutesPage() {
                     background: '#ff6b1a',
                   }}
                 />
-                台北公路車路線資料庫
+                Taipei Classic Cycling Routes
               </div>
               {/* Title */}
               <h1
@@ -81,10 +81,10 @@ export default function RoutesPage() {
                   letterSpacing: '-0.02em',
                   color: '#f5f5f7',
                   textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                Taipei<br />
-                <span style={{ color: '#ff6b1a' }}>Cycling</span> Routes
+                Roll the <span style={{ color: '#ff6b1a' }}>Route</span>
               </h1>
             </div>
 

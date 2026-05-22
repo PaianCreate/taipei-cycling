@@ -597,7 +597,7 @@ export default function HomePage() {
               display: 'flex', alignItems: 'center', gap: '8px',
             }}>
               <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#ff6b1a' }} />
-              台北公路車路線資料庫
+              Taipei Classic Cycling Routes
             </div>
             <h1 style={{
               fontFamily: 'Barlow Condensed, sans-serif',
@@ -607,9 +607,9 @@ export default function HomePage() {
               letterSpacing: '-0.02em',
               color: '#f5f5f7',
               textTransform: 'uppercase',
+              whiteSpace: 'nowrap',
             }}>
-              Taipei<br />
-              <span style={{ color: '#ff6b1a' }}>Cycling</span>
+              Roll the <span style={{ color: '#ff6b1a' }}>Route</span>
             </h1>
           </div>
           <a

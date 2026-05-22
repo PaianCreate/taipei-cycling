@@ -40,17 +40,15 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
         }
       }}
       style={{
-        perspective: '1000px',
         cursor: 'pointer',
         aspectRatio: '3/4',
-        transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-        // hover 才設 transform，避免 iOS Safari 在 CSS columns 中誤判 3D context 導致跳格
-        ...(hovered ? { transform: 'translateY(-8px) scale(1.02)' } : {}),
+        transition: 'box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         boxShadow: hovered
           ? `0 28px 56px rgba(0,0,0,0.55), 0 0 0 1px ${palette.accent}33`
           : '0 6px 16px rgba(0,0,0,0.3)',
         borderRadius: '20px',
         outline: 'none',
+        position: 'relative',
         ...style,
       }}
       onFocus={e => { e.currentTarget.style.boxShadow = `0 28px 56px rgba(0,0,0,0.55), 0 0 0 3px #ff6b1a` }}
@@ -60,6 +58,14 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           : '0 6px 16px rgba(0,0,0,0.3)'
       }}
     >
+      {/* 3D context 包進來，不暴露給 CSS columns 流佈局 */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        perspective: '1000px',
+        transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        ...(hovered ? { transform: 'translateY(-8px) scale(1.02)' } : {}),
+      }}>
       <div
         style={{
           position: 'relative',
@@ -273,6 +279,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             Google Maps
           </a>
         </div>
+      </div>
       </div>
     </div>
   )

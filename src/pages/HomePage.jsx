@@ -272,13 +272,13 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
 // ─── 8-card 3D coverflow carousel ──────────────────────────────────
 // 持續顯示在頁面上；按鈕觸發旋轉 2 秒後，正中央那張翻面顯示路線
 function CardCarousel({ rotation, phase, route }) {
-  const radius = 220 // 卡牌離旋轉中心的距離
+  const radius = 160 // 卡牌離旋轉中心的距離
   const showRouteInfo = phase === 'flipping' || phase === 'show'
 
   return (
     <div style={{
       width: '100%',
-      maxWidth: '260px',
+      maxWidth: '200px',
       aspectRatio: '3/4',
       perspective: '1400px',
       position: 'relative',
@@ -297,14 +297,16 @@ function CardCarousel({ rotation, phase, route }) {
           const isFront = i === 0
           // 翻面 / show 階段：側邊卡牌淡出，只留中央
           const sideFaded = !isFront && showRouteInfo
+          // 中央卡牌翻面時放大 1.4 倍，讓路線資訊容易看
+          const frontScaled = isFront && showRouteInfo
           return (
             <div key={i} style={{
               position: 'absolute',
               inset: 0,
-              transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+              transform: `rotateY(${angle}deg) translateZ(${radius}px) ${frontScaled ? 'scale(1.3)' : 'scale(1)'}`,
               transformStyle: 'preserve-3d',
               opacity: sideFaded ? 0 : 1,
-              transition: 'opacity 0.5s ease',
+              transition: 'opacity 0.5s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
               pointerEvents: sideFaded ? 'none' : 'auto',
             }}>
               <div style={{
@@ -382,8 +384,8 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: '28px',
-      padding: '48px 24px 32px',
+      gap: '96px',
+      padding: '80px 24px 64px',
       position: 'relative',
       overflow: 'hidden',
     }}>

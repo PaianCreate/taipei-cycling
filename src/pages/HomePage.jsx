@@ -654,7 +654,7 @@ export default function HomePage() {
             textTransform: 'uppercase',
             color: '#f5f5f7',
           }}>
-            All <span style={{ color: '#ff6b1a' }}>40</span> Routes
+            <span style={{ color: '#ff6b1a' }}>40</span> Routes to Nowhere
           </h2>
           <span style={{
             fontFamily: 'Barlow Condensed, sans-serif',

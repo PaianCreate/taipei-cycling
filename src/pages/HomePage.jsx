@@ -276,7 +276,7 @@ function CardCarousel({ rotation, phase, route }) {
   const showRouteInfo = phase === 'flipping' || phase === 'show'
 
   return (
-    <div style={{
+    <div className="carousel-wrapper" style={{
       width: '100%',
       maxWidth: '200px',
       aspectRatio: '3/4',
@@ -284,7 +284,7 @@ function CardCarousel({ rotation, phase, route }) {
       position: 'relative',
       margin: '0 auto',
     }}>
-      <div style={{
+      <div className="carousel-stage" style={{
         width: '100%',
         height: '100%',
         position: 'absolute',
@@ -300,7 +300,7 @@ function CardCarousel({ rotation, phase, route }) {
           // 中央卡牌翻面時放大 1.4 倍，讓路線資訊容易看
           const frontScaled = isFront && showRouteInfo
           return (
-            <div key={i} style={{
+            <div key={i} className="carousel-card" style={{
               position: 'absolute',
               inset: 0,
               transform: `rotateY(${angle}deg) translateZ(${radius}px) ${frontScaled ? 'scale(1.3)' : 'scale(1)'}`,
@@ -675,8 +675,7 @@ export default function HomePage() {
         }}>
           <style>{`
             @media (max-width: 1024px) { .card-grid { columns: 3 !important; } }
-            @media (max-width: 720px)  { .card-grid { columns: 2 !important; } }
-            @media (max-width: 440px)  { .card-grid { columns: 1 !important; } }
+            @media (max-width: 720px)  { .card-grid { columns: 2 !important; column-gap: 12px !important; } }
             .flip-card-wrap { break-inside: avoid; margin-bottom: 16px; }
           `}</style>
           {ROUTES.map(route => (

@@ -13,7 +13,7 @@ export default function FilterBar({ activeCat, onFilter, counts }) {
           {/* Label */}
           <span
             style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '11px',
               letterSpacing: '0.15em',
               color: '#86868b',
@@ -32,7 +32,7 @@ export default function FilterBar({ activeCat, onFilter, counts }) {
                 key={key}
                 onClick={() => onFilter(key)}
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '13px',
                   fontWeight: active ? 700 : 500,
                   letterSpacing: '0.05em',

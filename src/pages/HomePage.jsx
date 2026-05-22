@@ -88,7 +88,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           {/* big decorative text */}
           <div
             style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: 'clamp(52px, 8vw, 80px)',
               fontWeight: 900,
               lineHeight: 0.88,
@@ -105,7 +105,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <span
               style={{
-                fontFamily: 'Barlow Condensed, sans-serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: '13px',
                 fontWeight: 600,
                 letterSpacing: '0.15em',
@@ -165,7 +165,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           {/* cat + diff */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
             <span style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '11px',
               color: cat?.color,
               letterSpacing: '0.12em',
@@ -176,7 +176,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               {cat?.label}
             </span>
             <span style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '10px',
               fontWeight: 700,
               letterSpacing: '0.1em',
@@ -194,7 +194,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           {/* names */}
           <div style={{ flex: 1, minHeight: 0 }}>
             <div style={{
-              fontFamily: 'Noto Sans TC, sans-serif',
+              fontFamily: 'var(--font-cjk)',
               fontSize: 'clamp(15px, 2.5vw, 22px)',
               fontWeight: 700,
               color: '#f5f5f7',
@@ -204,7 +204,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               {route.zh}
             </div>
             <div style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '11px',
               color: '#86868b',
               letterSpacing: '0.05em',
@@ -236,8 +236,8 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               { v: `${route.avgGrade}%`, u: 'avg' },
             ].map(({ v, u }) => (
               <div key={u} style={{ background: '#2a2a2c', borderRadius: '8px', padding: '6px 4px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '16px', fontWeight: 700, color: '#f5f5f7', lineHeight: 1 }}>{v}</div>
-                <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '9px', color: '#6e6e73', letterSpacing: '0.1em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 700, color: '#f5f5f7', lineHeight: 1 }}>{v}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '9px', color: '#6e6e73', letterSpacing: '0.1em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
               </div>
             ))}
           </div>
@@ -250,7 +250,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             onClick={e => e.stopPropagation()}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
               color: '#ff6b1a', background: 'rgba(255,107,26,0.08)',
               border: '1px solid rgba(255,107,26,0.25)', borderRadius: '4px',
@@ -332,7 +332,7 @@ function CardCarousel({ rotation, phase, route }) {
                   boxShadow: '0 16px 40px rgba(0,0,0,0.45)',
                 }}>
                   <div style={{
-                    fontFamily: 'Barlow Condensed, sans-serif',
+                    fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(48px, 7vw, 72px)',
                     fontWeight: 900,
                     lineHeight: 0.88,
@@ -402,7 +402,7 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
 
       {/* eyebrow */}
       <div style={{
-        fontFamily: 'Barlow Condensed, sans-serif',
+        fontFamily: 'var(--font-display)',
         fontSize: '11px',
         letterSpacing: '0.25em',
         color: '#6e6e73',
@@ -418,7 +418,7 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       <button
         onClick={onNext}
         style={{
-          fontFamily: 'Barlow Condensed, sans-serif',
+          fontFamily: 'var(--font-display)',
           fontSize: '18px',
           fontWeight: 800,
           letterSpacing: '0.08em',
@@ -448,7 +448,7 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
 
       {phase === 'show' && (
         <div style={{
-          fontFamily: 'Noto Sans TC, sans-serif',
+          fontFamily: 'var(--font-cjk)',
           fontSize: '13px',
           color: '#86868b',
           textAlign: 'center',
@@ -481,11 +481,11 @@ function SurpriseCard({ route, palette }) {
       <div style={{ position: 'absolute', bottom: '-25%', right: '-25%', width: '70%', paddingBottom: '70%', borderRadius: '50%', background: palette.text, opacity: 0.07 }} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '11px', color: palette.text, opacity: 0.7, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: palette.text, opacity: 0.7, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
           #{String(route.id).padStart(2,'0')} · {cat?.label}
         </span>
         <span style={{
-          fontFamily: 'Barlow Condensed, sans-serif', fontSize: '10px', fontWeight: 700,
+          fontFamily: 'var(--font-display)', fontSize: '10px', fontWeight: 700,
           letterSpacing: '0.1em', color: diff?.textColor,
           background: diff?.bgColor, border: `1px solid ${diff?.textColor}55`,
           padding: '2px 7px', borderRadius: '2px', textTransform: 'uppercase',
@@ -495,10 +495,10 @@ function SurpriseCard({ route, palette }) {
       </div>
 
       <div style={{ flex: 1 }}>
-        <div style={{ fontFamily: 'Noto Sans TC, sans-serif', fontSize: '22px', fontWeight: 700, color: palette.text, lineHeight: 1.2, marginBottom: '4px' }}>
+        <div style={{ fontFamily: 'var(--font-cjk)', fontSize: '22px', fontWeight: 700, color: palette.text, lineHeight: 1.2, marginBottom: '4px' }}>
           {route.zh}
         </div>
-        <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '11px', color: palette.text, opacity: 0.5, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: palette.text, opacity: 0.5, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
           {route.en}
         </div>
       </div>
@@ -517,8 +517,8 @@ function SurpriseCard({ route, palette }) {
           { v: route.avgGrade + '%', u: '均坡' },
         ].map(({ v, u }) => (
           <div key={u} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '6px', padding: '7px 4px', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '16px', fontWeight: 700, color: palette.text, lineHeight: 1 }}>{v}</div>
-            <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '9px', color: palette.text, opacity: 0.6, letterSpacing: '0.1em', marginTop: '2px' }}>{u}</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 700, color: palette.text, lineHeight: 1 }}>{v}</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '9px', color: palette.text, opacity: 0.6, letterSpacing: '0.1em', marginTop: '2px' }}>{u}</div>
           </div>
         ))}
       </div>
@@ -529,7 +529,7 @@ function SurpriseCard({ route, palette }) {
         rel="noopener noreferrer"
         style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
-          fontFamily: 'Barlow Condensed, sans-serif', fontSize: '12px', fontWeight: 700,
+          fontFamily: 'var(--font-display)', fontSize: '12px', fontWeight: 700,
           letterSpacing: '0.1em', textTransform: 'uppercase',
           color: palette.bg, background: palette.text,
           borderRadius: '6px', padding: '9px', textDecoration: 'none',
@@ -588,7 +588,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
           <div>
             <div style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '11px',
               letterSpacing: '0.22em',
               color: '#ff6b1a',
@@ -600,7 +600,7 @@ export default function HomePage() {
               Taipei Classic Cycling Routes
             </div>
             <h1 style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: 'clamp(36px, 7vw, 64px)',
               fontWeight: 900,
               lineHeight: 0.9,
@@ -615,7 +615,7 @@ export default function HomePage() {
           <a
             href="/routes"
             style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '13px', fontWeight: 700, letterSpacing: '0.1em',
               textTransform: 'uppercase', color: '#86868b',
               border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px',
@@ -647,7 +647,7 @@ export default function HomePage() {
         {/* section header */}
         <div style={{ marginBottom: '28px', display: 'flex', alignItems: 'baseline', gap: '16px' }}>
           <h2 style={{
-            fontFamily: 'Barlow Condensed, sans-serif',
+            fontFamily: 'var(--font-display)',
             fontSize: 'clamp(28px, 5vw, 44px)',
             fontWeight: 900,
             letterSpacing: '-0.02em',
@@ -657,7 +657,7 @@ export default function HomePage() {
             <span style={{ color: '#ff6b1a' }}>40</span> Routes to Nowhere
           </h2>
           <span style={{
-            fontFamily: 'Barlow Condensed, sans-serif',
+            fontFamily: 'var(--font-display)',
             fontSize: '12px',
             color: '#6e6e73',
             letterSpacing: '0.12em',
@@ -697,7 +697,7 @@ export default function HomePage() {
         padding: '20px 24px',
         textAlign: 'center',
       }}>
-        <span style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '11px', color: '#48484a', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: '#48484a', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
           40 Routes to Nowhere
         </span>
       </footer>

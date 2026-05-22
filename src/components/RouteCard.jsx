@@ -62,7 +62,7 @@ export default function RouteCard({ route, onClick }) {
             {/* Route ID */}
             <div
               style={{
-                fontFamily: 'Barlow Condensed, sans-serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: '11px',
                 color: '#6e6e73',
                 letterSpacing: '0.1em',
@@ -74,7 +74,7 @@ export default function RouteCard({ route, onClick }) {
             {/* Chinese name */}
             <h3
               style={{
-                fontFamily: 'Noto Sans TC, sans-serif',
+                fontFamily: 'var(--font-cjk)',
                 fontSize: '17px',
                 fontWeight: 700,
                 color: '#f5f5f7',
@@ -87,7 +87,7 @@ export default function RouteCard({ route, onClick }) {
             {/* English name */}
             <p
               style={{
-                fontFamily: 'Barlow Condensed, sans-serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: '12px',
                 color: '#86868b',
                 letterSpacing: '0.05em',
@@ -106,7 +106,7 @@ export default function RouteCard({ route, onClick }) {
             style={{
               background: diff.bgColor,
               color: diff.textColor,
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '10px',
               fontWeight: 700,
               letterSpacing: '0.12em',
@@ -188,7 +188,7 @@ export default function RouteCard({ route, onClick }) {
             />
             <span
               style={{
-                fontFamily: 'Barlow Condensed, sans-serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: '10px',
                 color: cat.color,
                 letterSpacing: '0.08em',
@@ -226,7 +226,7 @@ export default function RouteCard({ route, onClick }) {
             >
               <div
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '18px',
                   fontWeight: 700,
                   color: '#f5f5f7',
@@ -238,7 +238,7 @@ export default function RouteCard({ route, onClick }) {
               </div>
               <div
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '9px',
                   color: '#6e6e73',
                   letterSpacing: '0.12em',
@@ -258,7 +258,7 @@ export default function RouteCard({ route, onClick }) {
             <span
               key={tag}
               style={{
-                fontFamily: 'Noto Sans TC, sans-serif',
+                fontFamily: 'var(--font-cjk)',
                 fontSize: '11px',
                 color: '#86868b',
                 background: 'rgba(255,255,255,0.04)',
@@ -285,7 +285,7 @@ export default function RouteCard({ route, onClick }) {
       >
         <span
           style={{
-            fontFamily: 'Noto Sans TC, sans-serif',
+            fontFamily: 'var(--font-cjk)',
             fontSize: '11px',
             color: '#86868b',
           }}
@@ -298,7 +298,7 @@ export default function RouteCard({ route, onClick }) {
           rel="noopener noreferrer"
           onClick={e => e.stopPropagation()}
           style={{
-            fontFamily: 'Barlow Condensed, sans-serif',
+            fontFamily: 'var(--font-display)',
             fontSize: '11px',
             fontWeight: 600,
             letterSpacing: '0.08em',

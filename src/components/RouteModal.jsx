@@ -68,7 +68,7 @@ export default function RouteModal({ route, onClose }) {
             <div>
               <div
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '11px',
                   color: cat.color,
                   letterSpacing: '0.15em',
@@ -92,7 +92,7 @@ export default function RouteModal({ route, onClose }) {
               </div>
               <h2
                 style={{
-                  fontFamily: 'Noto Sans TC, sans-serif',
+                  fontFamily: 'var(--font-cjk)',
                   fontSize: '24px',
                   fontWeight: 700,
                   color: '#f5f5f7',
@@ -104,7 +104,7 @@ export default function RouteModal({ route, onClose }) {
               </h2>
               <p
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '13px',
                   color: '#86868b',
                   letterSpacing: '0.08em',
@@ -121,7 +121,7 @@ export default function RouteModal({ route, onClose }) {
                 style={{
                   background: diff.bgColor,
                   color: diff.textColor,
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '11px',
                   fontWeight: 700,
                   letterSpacing: '0.12em',
@@ -233,7 +233,7 @@ export default function RouteModal({ route, onClose }) {
               >
                 <div
                   style={{
-                    fontFamily: 'Barlow Condensed, sans-serif',
+                    fontFamily: 'var(--font-display)',
                     fontSize: '20px',
                     fontWeight: 700,
                     color: color ?? '#f0ede8',
@@ -245,7 +245,7 @@ export default function RouteModal({ route, onClose }) {
                 </div>
                 <div
                   style={{
-                    fontFamily: 'Barlow Condensed, sans-serif',
+                    fontFamily: 'var(--font-display)',
                     fontSize: '9px',
                     color: '#6e6e73',
                     letterSpacing: '0.1em',
@@ -277,7 +277,7 @@ export default function RouteModal({ route, onClose }) {
             >
               <div
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '9px',
                   color: '#6e6e73',
                   letterSpacing: '0.12em',
@@ -293,7 +293,7 @@ export default function RouteModal({ route, onClose }) {
               </div>
               <div
                 style={{
-                  fontFamily: 'Noto Sans TC, sans-serif',
+                  fontFamily: 'var(--font-cjk)',
                   fontSize: '12px',
                   color: '#d2d2d7',
                   lineHeight: 1.4,
@@ -309,7 +309,7 @@ export default function RouteModal({ route, onClose }) {
         <div style={{ padding: '0 24px 16px' }}>
           <div
             style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '10px',
               color: cat.color,
               letterSpacing: '0.15em',
@@ -321,7 +321,7 @@ export default function RouteModal({ route, onClose }) {
           </div>
           <p
             style={{
-              fontFamily: 'Noto Sans TC, sans-serif',
+              fontFamily: 'var(--font-cjk)',
               fontSize: '13px',
               color: '#a1a1a6',
               lineHeight: 1.75,
@@ -335,7 +335,7 @@ export default function RouteModal({ route, onClose }) {
         <div style={{ padding: '0 24px 16px' }}>
           <div
             style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '10px',
               color: '#ff6b1a',
               letterSpacing: '0.15em',
@@ -355,7 +355,7 @@ export default function RouteModal({ route, onClose }) {
           >
             <p
               style={{
-                fontFamily: 'Noto Sans TC, sans-serif',
+                fontFamily: 'var(--font-cjk)',
                 fontSize: '13px',
                 color: '#8e8e93',
                 lineHeight: 1.75,
@@ -372,7 +372,7 @@ export default function RouteModal({ route, onClose }) {
             <span
               key={tag}
               style={{
-                fontFamily: 'Noto Sans TC, sans-serif',
+                fontFamily: 'var(--font-cjk)',
                 fontSize: '12px',
                 color: '#86868b',
                 background: 'rgba(255,255,255,0.04)',
@@ -400,7 +400,7 @@ export default function RouteModal({ route, onClose }) {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontFamily: 'Barlow Condensed, sans-serif',
+              fontFamily: 'var(--font-display)',
               fontSize: '13px',
               fontWeight: 700,
               letterSpacing: '0.1em',

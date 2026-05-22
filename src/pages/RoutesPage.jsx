@@ -50,7 +50,7 @@ export default function RoutesPage() {
               {/* Eyebrow */}
               <div
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: '11px',
                   letterSpacing: '0.2em',
                   color: '#ff6b1a',
@@ -74,7 +74,7 @@ export default function RoutesPage() {
               {/* Title */}
               <h1
                 style={{
-                  fontFamily: 'Barlow Condensed, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(32px, 6vw, 56px)',
                   fontWeight: 800,
                   lineHeight: 0.95,
@@ -100,7 +100,7 @@ export default function RoutesPage() {
                   border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '10px',
                   color: '#f5f5f7',
-                  fontFamily: 'Noto Sans TC, sans-serif',
+                  fontFamily: 'var(--font-cjk)',
                   fontSize: '13px',
                   padding: '10px 16px 10px 36px',
                   width: '220px',
@@ -142,7 +142,7 @@ export default function RoutesPage() {
               <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
                 <span
                   style={{
-                    fontFamily: 'Barlow Condensed, sans-serif',
+                    fontFamily: 'var(--font-display)',
                     fontSize: '22px',
                     fontWeight: 700,
                     color: '#f5f5f7',
@@ -153,7 +153,7 @@ export default function RoutesPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: 'Barlow Condensed, sans-serif',
+                    fontFamily: 'var(--font-display)',
                     fontSize: '11px',
                     color: '#6e6e73',
                     letterSpacing: '0.08em',
@@ -176,7 +176,7 @@ export default function RoutesPage() {
         {/* Results count */}
         <div
           style={{
-            fontFamily: 'Barlow Condensed, sans-serif',
+            fontFamily: 'var(--font-display)',
             fontSize: '12px',
             color: '#6e6e73',
             letterSpacing: '0.1em',
@@ -198,7 +198,7 @@ export default function RoutesPage() {
           >
             <div
               style={{
-                fontFamily: 'Barlow Condensed, sans-serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: '48px',
                 marginBottom: '12px',
               }}
@@ -207,7 +207,7 @@ export default function RoutesPage() {
             </div>
             <div
               style={{
-                fontFamily: 'Barlow Condensed, sans-serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: '16px',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',

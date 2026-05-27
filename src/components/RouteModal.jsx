@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { CATEGORY_CONFIG, DIFFICULTY_CONFIG, SVG_VIEWBOX } from '../data/routes.js'
 
 export default function RouteModal({ route, onClose }) {
@@ -17,13 +18,13 @@ export default function RouteModal({ route, onClose }) {
   const cat = CATEGORY_CONFIG[route.cat] ?? { label: route.cat, color: '#888' }
   const diff = DIFFICULTY_CONFIG[route.diff] ?? { label: route.diff, textColor: '#888', bgColor: '#222' }
 
-  return (
+  return createPortal(
     <div
       onClick={onClose}
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(0,0,0,0.85)',
+        background: 'rgba(0,0,0,0.4)',
         backdropFilter: 'blur(6px)',
         zIndex: 1000,
         display: 'flex',
@@ -41,14 +42,14 @@ export default function RouteModal({ route, onClose }) {
       <div
         onClick={e => e.stopPropagation()}
         style={{
-          background: '#1c1c1e',
+          background: '#ffffff',
           border: `1px solid ${cat.color}33`,
           borderRadius: '16px',
           maxWidth: '640px',
           width: '100%',
           maxHeight: '90vh',
           overflowY: 'auto',
-          boxShadow: `0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.7)`,
+          boxShadow: `0 0 0 1px rgba(0,0,0,0.04), 0 30px 80px rgba(0,0,0,0.18)`,
           animation: 'slideUp 0.25s ease',
           position: 'relative',
         }}
@@ -95,7 +96,7 @@ export default function RouteModal({ route, onClose }) {
                   fontFamily: 'var(--font-cjk)',
                   fontSize: '24px',
                   fontWeight: 700,
-                  color: '#f5f5f7',
+                  color: '#1d1d1f',
                   lineHeight: 1.2,
                   marginBottom: '4px',
                 }}
@@ -136,7 +137,7 @@ export default function RouteModal({ route, onClose }) {
               <button
                 onClick={onClose}
                 style={{
-                  background: 'rgba(255,255,255,0.06)',
+                  background: 'rgba(0,0,0,0.08)',
                   border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '8px',
                   color: '#888',
@@ -152,11 +153,11 @@ export default function RouteModal({ route, onClose }) {
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.color = '#f5f5f7'
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)'
+                  e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)'
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.color = '#86868b'
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+                  e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)'
                 }}
               >
                 ✕
@@ -169,7 +170,7 @@ export default function RouteModal({ route, onClose }) {
         <div style={{ padding: '16px 24px' }}>
           <div
             style={{
-              background: '#000',
+              background: '#f5f5f7',
               border: '1px solid rgba(255,255,255,0.06)',
               borderRadius: '10px',
               overflow: 'hidden',
@@ -187,7 +188,7 @@ export default function RouteModal({ route, onClose }) {
                 </linearGradient>
               </defs>
               {[20, 40, 60, 80, 100].map(y => (
-                <line key={y} x1="0" y1={y} x2="174" y2={y} stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                <line key={y} x1="0" y1={y} x2="174" y2={y} stroke="rgba(0,0,0,0.06)" strokeWidth="0.5" />
               ))}
               <path
                 d={`${route.svgPath} L174,120 L0,120 Z`}
@@ -219,14 +220,14 @@ export default function RouteModal({ route, onClose }) {
               { label: '爬升', value: `${route.elev}`, unit: 'm' },
               { label: '均坡', value: `${route.avgGrade}%`, unit: '' },
               { label: '最大坡', value: `${route.maxGrade}%`, unit: '' },
-              { label: '難度', value: diff.label, unit: '', color: diff.textColor },
+              { label: '難度', value: diff.label, unit: '' },
             ].map(({ label, value, unit, color }) => (
               <div
                 key={label}
                 style={{
-                  background: '#111',
-                  border: '1px solid #1e1e1e',
-                  borderRadius: '2px',
+                  background: '#f2f2f7',
+                  border: '1px solid rgba(0,0,0,0.06)',
+                  borderRadius: '8px',
                   padding: '10px 8px',
                   textAlign: 'center',
                 }}
@@ -236,7 +237,7 @@ export default function RouteModal({ route, onClose }) {
                     fontFamily: 'var(--font-display)',
                     fontSize: '20px',
                     fontWeight: 700,
-                    color: color ?? '#f0ede8',
+                    color: color ?? '#1d1d1f',
                     lineHeight: 1,
                     letterSpacing: '-0.02em',
                   }}
@@ -247,7 +248,7 @@ export default function RouteModal({ route, onClose }) {
                   style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: '9px',
-                    color: '#6e6e73',
+                    color: '#86868b',
                     letterSpacing: '0.1em',
                     marginTop: '4px',
                     textTransform: 'uppercase',
@@ -269,7 +270,7 @@ export default function RouteModal({ route, onClose }) {
             <div
               key={label}
               style={{
-                background: '#2a2a2c',
+                background: '#f2f2f7',
                 border: '1px solid rgba(255,255,255,0.06)',
                 borderRadius: '8px',
                 padding: '10px 12px',
@@ -279,7 +280,7 @@ export default function RouteModal({ route, onClose }) {
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: '9px',
-                  color: '#6e6e73',
+                  color: '#86868b',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   marginBottom: '4px',
@@ -295,7 +296,7 @@ export default function RouteModal({ route, onClose }) {
                 style={{
                   fontFamily: 'var(--font-cjk)',
                   fontSize: '12px',
-                  color: '#d2d2d7',
+                  color: '#3a3a3c',
                   lineHeight: 1.4,
                 }}
               >
@@ -323,7 +324,7 @@ export default function RouteModal({ route, onClose }) {
             style={{
               fontFamily: 'var(--font-cjk)',
               fontSize: '13px',
-              color: '#a1a1a6',
+              color: '#86868b',
               lineHeight: 1.75,
             }}
           >
@@ -337,7 +338,7 @@ export default function RouteModal({ route, onClose }) {
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: '10px',
-              color: '#ff6b1a',
+              color: '#0071e3',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               marginBottom: '8px',
@@ -347,8 +348,8 @@ export default function RouteModal({ route, onClose }) {
           </div>
           <div
             style={{
-              background: 'rgba(255,107,26,0.06)',
-              border: '1px solid rgba(255,107,26,0.18)',
+              background: 'rgba(0,113,227,0.08)',
+              border: '1px solid rgba(0,113,227,0.2)',
               borderRadius: '10px',
               padding: '12px 14px',
             }}
@@ -357,7 +358,7 @@ export default function RouteModal({ route, onClose }) {
               style={{
                 fontFamily: 'var(--font-cjk)',
                 fontSize: '13px',
-                color: '#8e8e93',
+                color: '#86868b',
                 lineHeight: 1.75,
               }}
             >
@@ -375,7 +376,7 @@ export default function RouteModal({ route, onClose }) {
                 fontFamily: 'var(--font-cjk)',
                 fontSize: '12px',
                 color: '#86868b',
-                background: 'rgba(255,255,255,0.04)',
+                background: 'rgba(0,0,0,0.04)',
                 border: '1px solid rgba(255,255,255,0.06)',
                 borderRadius: '6px',
                 padding: '3px 10px',
@@ -405,8 +406,8 @@ export default function RouteModal({ route, onClose }) {
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#0e0e0e',
-              background: '#ff6b1a',
+              color: '#ffffff',
+              background: '#0071e3',
               border: 'none',
               borderRadius: '10px',
               padding: '10px 20px',
@@ -416,8 +417,8 @@ export default function RouteModal({ route, onClose }) {
               gap: '6px',
               transition: 'background 0.15s ease',
             }}
-            onMouseEnter={e => e.currentTarget.style.background = '#ff8c4a'}
-            onMouseLeave={e => e.currentTarget.style.background = '#ff6b1a'}
+            onMouseEnter={e => e.currentTarget.style.background = '#0077ed'}
+            onMouseLeave={e => e.currentTarget.style.background = '#0071e3'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -426,6 +427,7 @@ export default function RouteModal({ route, onClose }) {
           </a>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

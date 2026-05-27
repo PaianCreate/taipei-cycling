@@ -35,12 +35,12 @@ export default function RoutesPage() {
   }, [activeCat, searchQuery])
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0e0e0e' }}>
+    <div style={{ minHeight: '100vh', background: '#f5f5f7' }}>
       {/* Hero header */}
       <div
         style={{
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-          background: 'linear-gradient(180deg, #161616 0%, #0e0e0e 100%)',
+          borderBottom: '1px solid rgba(0,0,0,0.08)',
+          background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%)',
           padding: '32px 0 24px',
         }}
       >
@@ -53,7 +53,7 @@ export default function RoutesPage() {
                   fontFamily: 'var(--font-display)',
                   fontSize: '11px',
                   letterSpacing: '0.2em',
-                  color: '#ff6b1a',
+                  color: '#0071e3',
                   textTransform: 'uppercase',
                   marginBottom: '8px',
                   display: 'flex',
@@ -66,7 +66,7 @@ export default function RoutesPage() {
                     display: 'inline-block',
                     width: '24px',
                     height: '1px',
-                    background: '#ff6b1a',
+                    background: '#0071e3',
                   }}
                 />
                 Taipei Classic Cycling Routes
@@ -79,12 +79,12 @@ export default function RoutesPage() {
                   fontWeight: 800,
                   lineHeight: 0.95,
                   letterSpacing: '-0.02em',
-                  color: '#f5f5f7',
+                  color: '#1d1d1f',
                   textTransform: 'uppercase',
                   whiteSpace: 'nowrap',
                 }}
               >
-                Roll the <span style={{ color: '#ff6b1a' }}>Route</span>
+                Roll the <span style={{ color: '#0071e3' }}>Route</span>
               </h1>
             </div>
 
@@ -96,10 +96,10 @@ export default function RoutesPage() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 style={{
-                  background: '#1c1c1e',
+                  background: '#ffffff',
                   border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '10px',
-                  color: '#f5f5f7',
+                  color: '#1d1d1f',
                   fontFamily: 'var(--font-cjk)',
                   fontSize: '13px',
                   padding: '10px 16px 10px 36px',
@@ -107,8 +107,8 @@ export default function RoutesPage() {
                   outline: 'none',
                   transition: 'border-color 0.15s ease',
                 }}
-                onFocus={e => e.target.style.borderColor = '#ff6b1a44'}
-                onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+                onFocus={e => e.target.style.borderColor = '#0071e3'}
+                onBlur={e => e.target.style.borderColor = 'rgba(0,0,0,0.12)'}
               />
               <svg
                 width="14"
@@ -145,7 +145,7 @@ export default function RoutesPage() {
                     fontFamily: 'var(--font-display)',
                     fontSize: '22px',
                     fontWeight: 700,
-                    color: '#f5f5f7',
+                    color: '#1d1d1f',
                     letterSpacing: '-0.02em',
                   }}
                 >
@@ -155,7 +155,7 @@ export default function RoutesPage() {
                   style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: '11px',
-                    color: '#6e6e73',
+                    color: '#86868b',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                   }}
@@ -178,7 +178,7 @@ export default function RoutesPage() {
           style={{
             fontFamily: 'var(--font-display)',
             fontSize: '12px',
-            color: '#6e6e73',
+            color: '#86868b',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             marginBottom: '20px',
@@ -193,7 +193,7 @@ export default function RoutesPage() {
             style={{
               textAlign: 'center',
               padding: '80px 24px',
-              color: '#6e6e73',
+              color: '#86868b',
             }}
           >
             <div

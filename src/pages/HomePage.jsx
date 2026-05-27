@@ -44,18 +44,18 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
         aspectRatio: '3/4',
         transition: 'box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         boxShadow: hovered
-          ? `0 28px 56px rgba(0,0,0,0.55), 0 0 0 1px ${palette.accent}33`
-          : '0 6px 16px rgba(0,0,0,0.3)',
+          ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.accent}33`
+          : '0 6px 16px rgba(0,0,0,0.06)',
         borderRadius: '20px',
         outline: 'none',
         position: 'relative',
         ...style,
       }}
-      onFocus={e => { e.currentTarget.style.boxShadow = `0 28px 56px rgba(0,0,0,0.55), 0 0 0 3px #ff6b1a` }}
+      onFocus={e => { e.currentTarget.style.boxShadow = `0 28px 56px rgba(0,0,0,0.15), 0 0 0 3px #ff6b1a` }}
       onBlur={e => {
         e.currentTarget.style.boxShadow = hovered
-          ? `0 28px 56px rgba(0,0,0,0.55), 0 0 0 1px ${palette.accent}33`
-          : '0 6px 16px rgba(0,0,0,0.3)'
+          ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.accent}33`
+          : '0 6px 16px rgba(0,0,0,0.06)'
       }}
     >
       {/* 3D context 包進來，不暴露給 CSS columns 流佈局 */}
@@ -157,8 +157,8 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
             borderRadius: '20px',
-            background: '#1c1c1e',
-            border: `1px solid ${cat?.color ?? '#ff6b1a'}44`,
+            background: '#ffffff',
+            border: `1px solid ${cat?.color ?? '#0071e3'}44`,
             display: 'flex',
             flexDirection: 'column',
             padding: '12px',
@@ -204,7 +204,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               fontFamily: 'var(--font-cjk)',
               fontSize: 'clamp(13px, 2.2vw, 20px)',
               fontWeight: 700,
-              color: '#f5f5f7',
+              color: '#1d1d1f',
               lineHeight: 1.15,
               marginBottom: '2px',
               overflow: 'hidden',
@@ -230,7 +230,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           </div>
 
           {/* SVG profile */}
-          <div style={{ background: '#0e0e0e', borderRadius: '6px', overflow: 'hidden', flexShrink: 0 }}>
+          <div style={{ background: '#f2f2f7', borderRadius: '6px', overflow: 'hidden', flexShrink: 0 }}>
             <svg viewBox="0 0 174 120" style={{ display: 'block', width: '100%', height: '40px' }} preserveAspectRatio="none">
               <defs>
                 <linearGradient id={`hg-${route.id}`} x1="0" y1="0" x2="0" y2="1">
@@ -250,9 +250,9 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               { v: route.elev, u: 'm↑' },
               { v: `${route.avgGrade}%`, u: 'avg' },
             ].map(({ v, u }) => (
-              <div key={u} style={{ background: '#2a2a2c', borderRadius: '8px', padding: '4px 2px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '14px', fontWeight: 700, color: '#f5f5f7', lineHeight: 1 }}>{v}</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '8px', color: '#6e6e73', letterSpacing: '0.08em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
+              <div key={u} style={{ background: '#f2f2f7', borderRadius: '8px', padding: '4px 2px', textAlign: 'center', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '14px', fontWeight: 700, color: '#1d1d1f', lineHeight: 1 }}>{v}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '8px', color: '#86868b', letterSpacing: '0.08em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
               </div>
             ))}
           </div>
@@ -267,8 +267,8 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
               fontFamily: 'var(--font-display)',
               fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-              color: '#ff6b1a', background: 'rgba(255,107,26,0.08)',
-              border: '1px solid rgba(255,107,26,0.25)', borderRadius: '6px',
+              color: '#0071e3', background: 'rgba(0,113,227,0.08)',
+              border: '1px solid rgba(0,113,227,0.25)', borderRadius: '6px',
               padding: '6px', textDecoration: 'none', flexShrink: 0,
               transition: 'background 0.15s',
             }}
@@ -345,7 +345,7 @@ function CardCarousel({ rotation, phase, route }) {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   overflow: 'hidden',
-                  boxShadow: '0 16px 40px rgba(0,0,0,0.45)',
+                  boxShadow: '0 16px 40px rgba(0,0,0,0.12)',
                 }}>
                   <div style={{
                     fontFamily: 'var(--font-display)',
@@ -421,7 +421,7 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
         fontFamily: 'var(--font-display)',
         fontSize: '11px',
         letterSpacing: '0.25em',
-        color: '#6e6e73',
+        color: '#86868b',
         textTransform: 'uppercase',
       }}>
         今天騎哪條？
@@ -439,8 +439,8 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
           fontWeight: 800,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
-          color: '#0e0e0e',
-          background: '#ff6b1a',
+          color: '#ffffff',
+          background: '#0071e3',
           border: 'none',
           borderRadius: '999px',
           padding: '14px 40px',
@@ -449,10 +449,10 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
           alignItems: 'center',
           gap: '10px',
           transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.25s ease',
-          boxShadow: '0 8px 24px rgba(255,107,26,0.25), 0 0 0 0.5px rgba(255,255,255,0.1) inset',
+          boxShadow: '0 8px 24px rgba(0,113,227,0.25), 0 0 0 0.5px rgba(255,255,255,0.1) inset',
         }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#ff8c4a'; e.currentTarget.style.transform = 'scale(1.03)' }}
-        onMouseLeave={e => { e.currentTarget.style.background = '#ff6b1a'; e.currentTarget.style.transform = 'scale(1)' }}
+        onMouseEnter={e => { e.currentTarget.style.background = '#0077ed'; e.currentTarget.style.transform = 'scale(1.03)' }}
+        onMouseLeave={e => { e.currentTarget.style.background = '#0071e3'; e.currentTarget.style.transform = 'scale(1)' }}
         onMouseDown={e => e.currentTarget.style.transform = 'scale(0.97)'}
         onMouseUp={e => e.currentTarget.style.transform = 'scale(1.03)'}
       >
@@ -594,11 +594,11 @@ export default function HomePage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0e0e0e' }}>
+    <div style={{ minHeight: '100vh', background: '#f5f5f7' }}>
       {/* ── Header ── */}
       <header style={{
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-        background: 'linear-gradient(180deg, #141414 0%, #0e0e0e 100%)',
+        borderBottom: '1px solid rgba(0,0,0,0.08)',
+        background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%)',
         padding: '28px 0 24px',
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
@@ -607,12 +607,12 @@ export default function HomePage() {
               fontFamily: 'var(--font-display)',
               fontSize: '11px',
               letterSpacing: '0.22em',
-              color: '#ff6b1a',
+              color: '#0071e3',
               textTransform: 'uppercase',
               marginBottom: '6px',
               display: 'flex', alignItems: 'center', gap: '8px',
             }}>
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#ff6b1a' }} />
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#0071e3' }} />
               Taipei Classic Cycling Routes
             </div>
             <h1 style={{
@@ -621,11 +621,11 @@ export default function HomePage() {
               fontWeight: 900,
               lineHeight: 0.9,
               letterSpacing: '-0.02em',
-              color: '#f5f5f7',
+              color: '#1d1d1f',
               textTransform: 'uppercase',
               whiteSpace: 'nowrap',
             }}>
-              Roll the <span style={{ color: '#ff6b1a' }}>Route</span>
+              Roll the <span style={{ color: '#0071e3' }}>Route</span>
             </h1>
           </div>
           <a
@@ -635,12 +635,12 @@ export default function HomePage() {
               fontFamily: 'var(--font-display)',
               fontSize: '13px', fontWeight: 700, letterSpacing: '0.1em',
               textTransform: 'uppercase', color: '#86868b',
-              border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px',
+              border: '1px solid rgba(0,0,0,0.12)', borderRadius: '10px',
               padding: '10px 20px', textDecoration: 'none',
               transition: 'all 0.15s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.color = '#f5f5f7'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)' }}
-            onMouseLeave={e => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#f5f5f7'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)' }}
+            onMouseLeave={e => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)' }}
           >
             全部路線 →
           </a>
@@ -648,7 +648,7 @@ export default function HomePage() {
       </header>
 
       {/* ── Section 1: Surprise Me ── */}
-      <section style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', background: '#141416' }}>
+      <section style={{ borderBottom: '1px solid rgba(0,0,0,0.08)', background: '#fafafa' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <SurpriseSpotlight
             route={surpriseRoute}
@@ -669,14 +669,14 @@ export default function HomePage() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
             textTransform: 'uppercase',
-            color: '#f5f5f7',
+            color: '#1d1d1f',
           }}>
-            <span style={{ color: '#ff6b1a' }}>40</span> Routes to Nowhere
+            <span style={{ color: '#0071e3' }}>40</span> Routes to Nowhere
           </h2>
           <span style={{
             fontFamily: 'var(--font-display)',
             fontSize: '12px',
-            color: '#6e6e73',
+            color: '#86868b',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
           }}>
@@ -709,11 +709,11 @@ export default function HomePage() {
 
       {/* ── Footer ── */}
       <footer style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid rgba(0,0,0,0.08)',
         padding: '20px 24px',
         textAlign: 'center',
       }}>
-        <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: '#48484a', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: '#86868b', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
           40 Routes to Nowhere
         </span>
       </footer>

@@ -21,21 +21,21 @@ export default function RouteCard({ route, onClick }) {
           onClick(route)
         }
       }}
-      onFocus={e => { e.currentTarget.style.boxShadow = `0 24px 48px rgba(0,0,0,0.55), 0 0 0 3px ${cat.color}` }}
+      onFocus={e => { e.currentTarget.style.boxShadow = `0 24px 48px rgba(0,0,0,0.15), 0 0 0 3px ${cat.color}` }}
       onBlur={e => {
         e.currentTarget.style.boxShadow = hovered
-          ? `0 24px 48px rgba(0,0,0,0.55), 0 0 0 1px ${cat.color}40`
-          : '0 4px 16px rgba(0,0,0,0.3)'
+          ? `0 24px 48px rgba(0,0,0,0.15), 0 0 0 1px ${cat.color}40`
+          : '0 4px 16px rgba(0,0,0,0.06)'
       }}
       style={{
-        background: '#1c1c1e',
-        border: `1px solid ${hovered ? cat.color + '66' : 'rgba(255,255,255,0.06)'}`,
+        background: '#ffffff',
+        border: `1px solid ${hovered ? cat.color + '66' : 'rgba(0,0,0,0.08)'}`,
         borderRadius: '12px',
         cursor: 'pointer',
         transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease',
         boxShadow: hovered
-          ? `0 24px 48px rgba(0,0,0,0.55), 0 0 0 1px ${cat.color}40`
-          : '0 4px 16px rgba(0,0,0,0.3)',
+          ? `0 24px 48px rgba(0,0,0,0.15), 0 0 0 1px ${cat.color}40`
+          : '0 4px 16px rgba(0,0,0,0.06)',
         transform: hovered ? 'translateY(-6px) scale(1.02)' : 'translateY(0) scale(1)',
         position: 'relative',
         overflow: 'hidden',
@@ -64,7 +64,7 @@ export default function RouteCard({ route, onClick }) {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: '11px',
-                color: '#6e6e73',
+                color: '#86868b',
                 letterSpacing: '0.1em',
                 marginBottom: '2px',
               }}
@@ -77,7 +77,7 @@ export default function RouteCard({ route, onClick }) {
                 fontFamily: 'var(--font-cjk)',
                 fontSize: '17px',
                 fontWeight: 700,
-                color: '#f5f5f7',
+                color: '#1d1d1f',
                 lineHeight: 1.25,
                 marginBottom: '3px',
               }}
@@ -125,7 +125,7 @@ export default function RouteCard({ route, onClick }) {
         {/* SVG Profile */}
         <div
           style={{
-            background: '#2a2a2c',
+            background: '#f2f2f7',
             borderRadius: '8px',
             border: '1px solid rgba(255,255,255,0.06)',
             overflow: 'hidden',
@@ -138,8 +138,8 @@ export default function RouteCard({ route, onClick }) {
             preserveAspectRatio="none"
           >
             {/* Grid lines */}
-            <line x1="0" y1="40" x2="174" y2="40" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-            <line x1="0" y1="80" x2="174" y2="80" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+            <line x1="0" y1="40" x2="174" y2="40" stroke="rgba(0,0,0,0.06)" strokeWidth="0.5" />
+            <line x1="0" y1="80" x2="174" y2="80" stroke="rgba(0,0,0,0.06)" strokeWidth="0.5" />
 
             {/* Filled area under path */}
             <defs>
@@ -217,7 +217,7 @@ export default function RouteCard({ route, onClick }) {
             <div
               key={label}
               style={{
-                background: '#2a2a2c',
+                background: '#f2f2f7',
                 borderRadius: '8px',
                 padding: '8px 6px',
                 textAlign: 'center',
@@ -229,7 +229,7 @@ export default function RouteCard({ route, onClick }) {
                   fontFamily: 'var(--font-display)',
                   fontSize: '18px',
                   fontWeight: 700,
-                  color: '#f5f5f7',
+                  color: '#1d1d1f',
                   lineHeight: 1,
                   letterSpacing: '-0.02em',
                 }}
@@ -240,7 +240,7 @@ export default function RouteCard({ route, onClick }) {
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: '9px',
-                  color: '#6e6e73',
+                  color: '#86868b',
                   letterSpacing: '0.12em',
                   marginTop: '3px',
                   textTransform: 'uppercase',
@@ -261,7 +261,7 @@ export default function RouteCard({ route, onClick }) {
                 fontFamily: 'var(--font-cjk)',
                 fontSize: '11px',
                 color: '#86868b',
-                background: 'rgba(255,255,255,0.04)',
+                background: 'rgba(0,0,0,0.04)',
                 border: '1px solid rgba(255,255,255,0.06)',
                 borderRadius: '8px',
                 padding: '2px 7px',
@@ -302,9 +302,9 @@ export default function RouteCard({ route, onClick }) {
             fontSize: '11px',
             fontWeight: 600,
             letterSpacing: '0.08em',
-            color: '#ff6b1a',
-            background: 'rgba(255,107,26,0.08)',
-            border: '1px solid rgba(255,107,26,0.25)',
+            color: '#0071e3',
+            background: 'rgba(0,113,227,0.08)',
+            border: '1px solid rgba(0,113,227,0.25)',
             borderRadius: '8px',
             padding: '4px 10px',
             textDecoration: 'none',
@@ -315,12 +315,12 @@ export default function RouteCard({ route, onClick }) {
             gap: '4px',
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.background = 'rgba(255,107,26,0.18)'
-            e.currentTarget.style.color = '#ff8c4a'
+            e.currentTarget.style.background = 'rgba(0,113,227,0.18)'
+            e.currentTarget.style.color = '#0077ed'
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.background = 'rgba(255,107,26,0.08)'
-            e.currentTarget.style.color = '#ff6b1a'
+            e.currentTarget.style.background = 'rgba(0,113,227,0.08)'
+            e.currentTarget.style.color = '#0071e3'
           }}
         >
           <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">

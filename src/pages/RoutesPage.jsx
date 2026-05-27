@@ -45,6 +45,31 @@ export default function RoutesPage() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4">
+          {/* 返回首頁 */}
+          <a
+            href="/"
+            onClick={e => { e.preventDefault(); window.__navigate?.('home') }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontFamily: 'var(--font-display)',
+              fontSize: '13px',
+              fontWeight: 500,
+              color: '#0071e3',
+              textDecoration: 'none',
+              marginBottom: '16px',
+              transition: 'opacity 0.15s ease',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            回首頁
+          </a>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
             <div>
               {/* Eyebrow */}
@@ -124,47 +149,6 @@ export default function RoutesPage() {
             </div>
           </div>
 
-          {/* Summary stats */}
-          <div
-            style={{
-              display: 'flex',
-              gap: '24px',
-              marginTop: '20px',
-              flexWrap: 'wrap',
-            }}
-          >
-            {[
-              { val: '40', label: 'Total Routes' },
-              { val: '160km', label: 'Longest Route' },
-              { val: '2,936m', label: 'Max Elevation' },
-              { val: '5', label: 'Categories' },
-            ].map(({ val, label }) => (
-              <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '22px',
-                    fontWeight: 700,
-                    color: '#1d1d1f',
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  {val}
-                </span>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '11px',
-                    color: '#86868b',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 

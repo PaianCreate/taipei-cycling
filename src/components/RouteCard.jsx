@@ -125,7 +125,7 @@ export default function RouteCard({ route, onClick }) {
         {/* SVG Profile */}
         <div
           style={{
-            background: '#f2f2f7',
+            background: '#f5f1e8',
             borderRadius: '8px',
             border: '1px solid rgba(255,255,255,0.06)',
             overflow: 'hidden',
@@ -217,7 +217,7 @@ export default function RouteCard({ route, onClick }) {
             <div
               key={label}
               style={{
-                background: '#f2f2f7',
+                background: '#f5f1e8',
                 borderRadius: '8px',
                 padding: '8px 6px',
                 textAlign: 'center',

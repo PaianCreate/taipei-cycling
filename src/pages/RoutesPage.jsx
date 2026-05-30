@@ -35,7 +35,7 @@ export default function RoutesPage() {
   }, [activeCat, searchQuery])
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f7' }}>
+    <div style={{ minHeight: '100vh', background: '#faf6ee' }}>
       {/* Hero header */}
       <div
         style={{
@@ -56,7 +56,7 @@ export default function RoutesPage() {
               fontFamily: 'var(--font-display)',
               fontSize: '13px',
               fontWeight: 500,
-              color: '#0071e3',
+              color: '#9d8df1',
               textDecoration: 'none',
               marginBottom: '16px',
               transition: 'opacity 0.15s ease',
@@ -78,7 +78,7 @@ export default function RoutesPage() {
                   fontFamily: 'var(--font-display)',
                   fontSize: '11px',
                   letterSpacing: '0.2em',
-                  color: '#0071e3',
+                  color: '#9d8df1',
                   textTransform: 'uppercase',
                   marginBottom: '8px',
                   display: 'flex',
@@ -91,7 +91,7 @@ export default function RoutesPage() {
                     display: 'inline-block',
                     width: '24px',
                     height: '1px',
-                    background: '#0071e3',
+                    background: '#9d8df1',
                   }}
                 />
                 Taipei Classic Cycling Routes
@@ -109,7 +109,7 @@ export default function RoutesPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Roll the <span style={{ color: '#0071e3' }}>Route</span>
+                Roll the <span style={{ color: '#9d8df1' }}>Route</span>
               </h1>
             </div>
 
@@ -132,7 +132,7 @@ export default function RoutesPage() {
                   outline: 'none',
                   transition: 'border-color 0.15s ease',
                 }}
-                onFocus={e => e.target.style.borderColor = '#0071e3'}
+                onFocus={e => e.target.style.borderColor = '#9d8df1'}
                 onBlur={e => e.target.style.borderColor = 'rgba(0,0,0,0.12)'}
               />
               <svg

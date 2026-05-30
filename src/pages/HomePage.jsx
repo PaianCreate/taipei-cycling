@@ -1,17 +1,29 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { ROUTES, CATEGORY_CONFIG, DIFFICULTY_CONFIG } from '../data/routes.js'
 
-// ─── Card color palette (Apple product colorways) ───────────────
+// ─── Card palette：每張卡用兩色組成柔光漸層，白文字疊在飽和區 ───
 const CARD_PALETTES = [
-  { bg: '#1d1d1f', text: '#f5f5f7', accent: '#86868b' }, // Space Black
-  { bg: '#4a6b88', text: '#f0f4f9', accent: '#7a99b8' }, // Sierra Blue
-  { bg: '#4a6356', text: '#eaf0eb', accent: '#7a9088' }, // Alpine Green
-  { bg: '#514458', text: '#f0e8f0', accent: '#867693' }, // Deep Purple
-  { bg: '#ebe5d8', text: '#2a2520', accent: '#a8957a' }, // Starlight
-  { bg: '#2a3854', text: '#e8edf5', accent: '#5c6e8c' }, // Midnight
-  { bg: '#b86b54', text: '#fbe9e0', accent: '#8a4e3d' }, // Sunset Coral
-  { bg: '#c9a872', text: '#3a2e1f', accent: '#a08660' }, // Gold
+  { name: 'Charcoal',  primary: '#3a3a3c', secondary: '#6e6e73', accent: '#3a3a3c' },
+  { name: 'Sky',       primary: '#4a6b88', secondary: '#86b0d4', accent: '#4a6b88' },
+  { name: 'Sage',      primary: '#5a7a6f', secondary: '#9ec0b3', accent: '#5a7a6f' },
+  { name: 'Lavender',  primary: '#7e6da8', secondary: '#b09cd4', accent: '#7e6da8' },
+  { name: 'Sand',      primary: '#c4955c', secondary: '#e6c989', accent: '#c4955c' },
+  { name: 'Indigo',    primary: '#2a3854', secondary: '#5c6e8c', accent: '#2a3854' },
+  { name: 'Coral',     primary: '#b86b54', secondary: '#ff9f7a', accent: '#b86b54' },
+  { name: 'Amber',     primary: '#b89548', secondary: '#e6c486', accent: '#b89548' },
 ]
+
+// 文字一律白色（per design spec）
+const CARD_TEXT = '#ffffff'
+
+// 組漸層：cream 底 → 偏左上飽和色 → 偏右下副色光暈
+function paletteGradient(p) {
+  return `
+    radial-gradient(circle at 28% 32%, ${p.primary} 0%, transparent 58%),
+    radial-gradient(circle at 72% 70%, ${p.secondary} 0%, transparent 55%),
+    linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)
+  `
+}
 
 function getPalette(id) {
   return CARD_PALETTES[(id - 1) % CARD_PALETTES.length]
@@ -84,7 +96,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
             borderRadius: '20px',
-            background: palette.bg,
+            background: paletteGradient(palette),
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -99,7 +111,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               fontSize: 'clamp(52px, 8vw, 80px)',
               fontWeight: 900,
               lineHeight: 0.88,
-              color: palette.text,
+              color: CARD_TEXT,
               textTransform: 'uppercase',
               letterSpacing: '-0.03em',
               userSelect: 'none',
@@ -116,7 +128,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
                 fontSize: '13px',
                 fontWeight: 600,
                 letterSpacing: '0.15em',
-                color: palette.text,
+                color: CARD_TEXT,
                 opacity: 0.6,
                 textTransform: 'uppercase',
               }}
@@ -124,7 +136,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               #{String(route.id).padStart(2, '0')}
             </span>
             <svg
-              width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={palette.text} strokeWidth="2"
+              width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={CARD_TEXT} strokeWidth="2"
               style={{
                 opacity: hovered ? 0.9 : 0.5,
                 transform: hovered ? 'translateX(6px)' : 'translateX(0)',
@@ -143,7 +155,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             width: '80%',
             paddingBottom: '80%',
             borderRadius: '50%',
-            background: palette.text,
+            background: CARD_TEXT,
             opacity: 0.06,
           }} />
         </div>
@@ -158,7 +170,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             transform: 'rotateY(180deg)',
             borderRadius: '20px',
             background: '#ffffff',
-            border: `1px solid ${cat?.color ?? '#0071e3'}44`,
+            border: `1px solid ${cat?.color ?? '#9d8df1'}44`,
             display: 'flex',
             flexDirection: 'column',
             padding: '12px',
@@ -267,8 +279,8 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
               fontFamily: 'var(--font-display)',
               fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-              color: '#0071e3', background: 'rgba(0,113,227,0.08)',
-              border: '1px solid rgba(0,113,227,0.25)', borderRadius: '6px',
+              color: '#9d8df1', background: 'rgba(157,141,241,0.1)',
+              border: '1px solid rgba(157,141,241,0.3)', borderRadius: '6px',
               padding: '6px', textDecoration: 'none', flexShrink: 0,
               transition: 'background 0.15s',
             }}
@@ -339,7 +351,7 @@ function CardCarousel({ rotation, phase, route }) {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
                   borderRadius: '20px',
-                  background: p.bg,
+                  background: paletteGradient(p),
                   padding: '20px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -352,7 +364,7 @@ function CardCarousel({ rotation, phase, route }) {
                     fontSize: 'clamp(48px, 7vw, 72px)',
                     fontWeight: 900,
                     lineHeight: 0.88,
-                    color: p.text,
+                    color: CARD_TEXT,
                     textTransform: 'uppercase',
                     letterSpacing: '-0.03em',
                   }}>Flip<br />It</div>
@@ -363,7 +375,7 @@ function CardCarousel({ rotation, phase, route }) {
                     width: '80%',
                     paddingBottom: '80%',
                     borderRadius: '50%',
-                    background: p.text,
+                    background: CARD_TEXT,
                     opacity: 0.06,
                   }} />
                 </div>
@@ -411,7 +423,7 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
         transform: 'translate(-50%, -50%)',
         width: '500px', height: '500px',
         borderRadius: '50%',
-        background: route ? `radial-gradient(circle, ${palette.bg}22 0%, transparent 70%)` : 'transparent',
+        background: route ? `radial-gradient(circle, ${palette.primary}22 0%, transparent 70%)` : 'transparent',
         transition: 'background 0.6s ease',
         pointerEvents: 'none',
       }} />
@@ -440,7 +452,7 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
           color: '#ffffff',
-          background: '#0071e3',
+          background: '#9d8df1',
           border: 'none',
           borderRadius: '999px',
           padding: '14px 40px',
@@ -449,10 +461,10 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
           alignItems: 'center',
           gap: '10px',
           transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.25s ease',
-          boxShadow: '0 8px 24px rgba(0,113,227,0.25), 0 0 0 0.5px rgba(255,255,255,0.1) inset',
+          boxShadow: '0 8px 24px rgba(157,141,241,0.3), 0 0 0 0.5px rgba(255,255,255,0.1) inset',
         }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#0077ed'; e.currentTarget.style.transform = 'scale(1.03)' }}
-        onMouseLeave={e => { e.currentTarget.style.background = '#0071e3'; e.currentTarget.style.transform = 'scale(1)' }}
+        onMouseEnter={e => { e.currentTarget.style.background = '#b09cf5'; e.currentTarget.style.transform = 'scale(1.03)' }}
+        onMouseLeave={e => { e.currentTarget.style.background = '#9d8df1'; e.currentTarget.style.transform = 'scale(1)' }}
         onMouseDown={e => e.currentTarget.style.transform = 'scale(0.97)'}
         onMouseUp={e => e.currentTarget.style.transform = 'scale(1.03)'}
       >
@@ -483,7 +495,7 @@ function SurpriseCard({ route, palette }) {
   return (
     <div style={{
       borderRadius: '20px',
-      background: palette.bg,
+      background: paletteGradient(palette),
       padding: '22px',
       display: 'flex',
       flexDirection: 'column',
@@ -491,13 +503,13 @@ function SurpriseCard({ route, palette }) {
       aspectRatio: '3/4',
       overflow: 'hidden',
       position: 'relative',
-      boxShadow: `0 20px 60px ${palette.bg}66`,
+      boxShadow: `0 20px 60px ${palette.primary}33`,
     }}>
       {/* deco circle */}
-      <div style={{ position: 'absolute', bottom: '-25%', right: '-25%', width: '70%', paddingBottom: '70%', borderRadius: '50%', background: palette.text, opacity: 0.07 }} />
+      <div style={{ position: 'absolute', bottom: '-25%', right: '-25%', width: '70%', paddingBottom: '70%', borderRadius: '50%', background: CARD_TEXT, opacity: 0.07 }} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: palette.text, opacity: 0.7, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: CARD_TEXT, opacity: 0.7, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
           #{String(route.id).padStart(2,'0')} · {cat?.label}
         </span>
         <span style={{
@@ -511,18 +523,18 @@ function SurpriseCard({ route, palette }) {
       </div>
 
       <div style={{ flex: 1 }}>
-        <div style={{ fontFamily: 'var(--font-cjk)', fontSize: '22px', fontWeight: 700, color: palette.text, lineHeight: 1.2, marginBottom: '4px' }}>
+        <div style={{ fontFamily: 'var(--font-cjk)', fontSize: '22px', fontWeight: 700, color: CARD_TEXT, lineHeight: 1.2, marginBottom: '4px' }}>
           {route.zh}
         </div>
-        <div style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: palette.text, opacity: 0.5, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: CARD_TEXT, opacity: 0.5, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
           {route.en}
         </div>
       </div>
 
       <div style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '8px', overflow: 'hidden' }}>
         <svg viewBox="0 0 174 120" style={{ display: 'block', width: '100%', height: '56px' }} preserveAspectRatio="none">
-          <path d={`${route.svgPath} L174,120 L0,120 Z`} fill={palette.text} opacity="0.15" />
-          <path d={route.svgPath} fill="none" stroke={palette.text} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
+          <path d={`${route.svgPath} L174,120 L0,120 Z`} fill={CARD_TEXT} opacity="0.15" />
+          <path d={route.svgPath} fill="none" stroke={CARD_TEXT} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
         </svg>
       </div>
 
@@ -533,8 +545,8 @@ function SurpriseCard({ route, palette }) {
           { v: route.avgGrade + '%', u: '均坡' },
         ].map(({ v, u }) => (
           <div key={u} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '6px', padding: '7px 4px', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 700, color: palette.text, lineHeight: 1 }}>{v}</div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '9px', color: palette.text, opacity: 0.6, letterSpacing: '0.1em', marginTop: '2px' }}>{u}</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 700, color: CARD_TEXT, lineHeight: 1 }}>{v}</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '9px', color: CARD_TEXT, opacity: 0.6, letterSpacing: '0.1em', marginTop: '2px' }}>{u}</div>
           </div>
         ))}
       </div>
@@ -547,9 +559,9 @@ function SurpriseCard({ route, palette }) {
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
           fontFamily: 'var(--font-display)', fontSize: '12px', fontWeight: 700,
           letterSpacing: '0.1em', textTransform: 'uppercase',
-          color: palette.bg, background: palette.text,
-          borderRadius: '6px', padding: '9px', textDecoration: 'none',
-          boxShadow: `0 2px 12px ${palette.text}44`,
+          color: palette.primary, background: '#ffffff',
+          borderRadius: '999px', padding: '10px', textDecoration: 'none',
+          boxShadow: `0 4px 16px rgba(0,0,0,0.12)`,
         }}
       >
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
@@ -594,7 +606,7 @@ export default function HomePage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f7' }}>
+    <div style={{ minHeight: '100vh', background: '#faf6ee' }}>
       {/* ── Header ── */}
       <header style={{
         borderBottom: '1px solid rgba(0,0,0,0.08)',
@@ -607,12 +619,12 @@ export default function HomePage() {
               fontFamily: 'var(--font-display)',
               fontSize: '11px',
               letterSpacing: '0.22em',
-              color: '#0071e3',
+              color: '#9d8df1',
               textTransform: 'uppercase',
               marginBottom: '6px',
               display: 'flex', alignItems: 'center', gap: '8px',
             }}>
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#0071e3' }} />
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#9d8df1' }} />
               Taipei Classic Cycling Routes
             </div>
             <h1 style={{
@@ -625,7 +637,7 @@ export default function HomePage() {
               textTransform: 'uppercase',
               whiteSpace: 'nowrap',
             }}>
-              Roll the <span style={{ color: '#0071e3' }}>Route</span>
+              Roll the <span style={{ color: '#9d8df1' }}>Route</span>
             </h1>
           </div>
           <a
@@ -639,7 +651,7 @@ export default function HomePage() {
               padding: '10px 20px', textDecoration: 'none',
               transition: 'all 0.15s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.color = '#f5f5f7'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)' }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#faf6ee'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)' }}
             onMouseLeave={e => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)' }}
           >
             全部路線 →
@@ -648,7 +660,7 @@ export default function HomePage() {
       </header>
 
       {/* ── Section 1: Surprise Me ── */}
-      <section style={{ borderBottom: '1px solid rgba(0,0,0,0.08)', background: '#fafafa' }}>
+      <section style={{ borderBottom: '1px solid rgba(0,0,0,0.08)', background: '#f3eee2' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <SurpriseSpotlight
             route={surpriseRoute}
@@ -671,7 +683,7 @@ export default function HomePage() {
             textTransform: 'uppercase',
             color: '#1d1d1f',
           }}>
-            <span style={{ color: '#0071e3' }}>40</span> Routes to Nowhere
+            <span style={{ color: '#9d8df1' }}>40</span> Routes to Nowhere
           </h2>
           <span style={{
             fontFamily: 'var(--font-display)',

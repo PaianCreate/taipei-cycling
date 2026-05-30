@@ -1,22 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital,wght@0,400;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  /* Apple-style font stack：Mac/iOS 自動拿 SF Pro，其他平台 Inter 補位 */
+  /* sans：保留 Apple stack（Mac/iOS 拿 SF Pro，其他平台 Inter） */
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
   --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
   --font-cjk: "PingFang TC", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  /* serif：dreamy 風格用，做反差 */
+  --font-serif: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
 
-  /* Apple Light Mode tokens */
-  --bg: #f5f5f7;
+  /* Cream + Dreamy gradient tokens */
+  --bg: #faf6ee;             /* 暖米色奶油底 */
+  --bg-soft: #f3eee2;        /* section 區分用 */
   --surface: #ffffff;
-  --surface2: #f2f2f7;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-strong: rgba(0, 0, 0, 0.12);
-  --brand: #0071e3;          /* Apple Blue（CTA） */
-  --brand-hover: #0077ed;
-  --brand-glow: rgba(0, 113, 227, 0.15);
+  --surface2: #f5f1e8;       /* 卡內部 panel */
+  --border: rgba(0, 0, 0, 0.06);
+  --border-strong: rgba(0, 0, 0, 0.1);
+  --brand: #9d8df1;          /* Lavender CTA */
+  --brand-hover: #b09cf5;
+  --brand-glow: rgba(157, 141, 241, 0.25);
   --text: #1d1d1f;
   --text-muted: #6e6e73;
   --text-dim: #86868b;
@@ -69,7 +72,7 @@ body {
 
 /* ── Focus ring for keyboard nav ── */
 :focus-visible {
-  outline: 2px solid #0071e3;
+  outline: 2px solid var(--brand);
   outline-offset: 2px;
   border-radius: 8px;
 }

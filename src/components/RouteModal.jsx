@@ -152,7 +152,7 @@ export default function RouteModal({ route, onClose }) {
                   transition: 'all 0.15s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.color = '#f5f5f7'
+                  e.currentTarget.style.color = '#faf6ee'
                   e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)'
                 }}
                 onMouseLeave={e => {
@@ -170,7 +170,7 @@ export default function RouteModal({ route, onClose }) {
         <div style={{ padding: '16px 24px' }}>
           <div
             style={{
-              background: '#f5f5f7',
+              background: '#faf6ee',
               border: '1px solid rgba(255,255,255,0.06)',
               borderRadius: '10px',
               overflow: 'hidden',
@@ -225,7 +225,7 @@ export default function RouteModal({ route, onClose }) {
               <div
                 key={label}
                 style={{
-                  background: '#f2f2f7',
+                  background: '#f5f1e8',
                   border: '1px solid rgba(0,0,0,0.06)',
                   borderRadius: '8px',
                   padding: '10px 8px',
@@ -270,7 +270,7 @@ export default function RouteModal({ route, onClose }) {
             <div
               key={label}
               style={{
-                background: '#f2f2f7',
+                background: '#f5f1e8',
                 border: '1px solid rgba(255,255,255,0.06)',
                 borderRadius: '8px',
                 padding: '10px 12px',
@@ -338,7 +338,7 @@ export default function RouteModal({ route, onClose }) {
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: '10px',
-              color: '#0071e3',
+              color: '#9d8df1',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               marginBottom: '8px',
@@ -348,8 +348,8 @@ export default function RouteModal({ route, onClose }) {
           </div>
           <div
             style={{
-              background: 'rgba(0,113,227,0.08)',
-              border: '1px solid rgba(0,113,227,0.2)',
+              background: 'rgba(157,141,241,0.1)',
+              border: '1px solid rgba(157,141,241,0.3)',
               borderRadius: '10px',
               padding: '12px 14px',
             }}
@@ -407,7 +407,7 @@ export default function RouteModal({ route, onClose }) {
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               color: '#ffffff',
-              background: '#0071e3',
+              background: '#9d8df1',
               border: 'none',
               borderRadius: '10px',
               padding: '10px 20px',
@@ -417,8 +417,8 @@ export default function RouteModal({ route, onClose }) {
               gap: '6px',
               transition: 'background 0.15s ease',
             }}
-            onMouseEnter={e => e.currentTarget.style.background = '#0077ed'}
-            onMouseLeave={e => e.currentTarget.style.background = '#0071e3'}
+            onMouseEnter={e => e.currentTarget.style.background = '#b09cf5'}
+            onMouseLeave={e => e.currentTarget.style.background = '#9d8df1'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>

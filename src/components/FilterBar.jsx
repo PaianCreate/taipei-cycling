@@ -1,13 +1,13 @@
 import { CATEGORY_CONFIG } from '../data/routes.js'
 
 const ALL_CATS = [
-  { key: 'all', label: '全部', color: '#0071e3' },
+  { key: 'all', label: '全部', color: '#9d8df1' },
   ...Object.entries(CATEGORY_CONFIG).map(([key, val]) => ({ key, label: val.label, color: val.color })),
 ]
 
 export default function FilterBar({ activeCat, onFilter, counts }) {
   return (
-    <div style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }} className="sticky top-0 z-40 bg-white/75 backdrop-blur-xl">
+    <div style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }} className="sticky top-0 z-40 bg-[#faf6ee]/75 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex items-center gap-2 flex-wrap">
           {/* Label */}

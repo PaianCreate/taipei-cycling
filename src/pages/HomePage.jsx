@@ -1,26 +1,27 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { ROUTES, CATEGORY_CONFIG, DIFFICULTY_CONFIG } from '../data/routes.js'
 
-// ─── Card palette：每張卡用兩色組成柔光漸層，白文字疊在飽和區 ───
+// ─── Card palette：每張卡用「三色」暈染漸層（dreamy bloom）── primary 兼當 hover/maps 主色 ───
 const CARD_PALETTES = [
-  { name: 'Charcoal',  primary: '#3a3a3c', secondary: '#6e6e73', accent: '#3a3a3c' },
-  { name: 'Sky',       primary: '#4a6b88', secondary: '#86b0d4', accent: '#4a6b88' },
-  { name: 'Sage',      primary: '#5a7a6f', secondary: '#9ec0b3', accent: '#5a7a6f' },
-  { name: 'Lavender',  primary: '#7e6da8', secondary: '#b09cd4', accent: '#7e6da8' },
-  { name: 'Sand',      primary: '#c4955c', secondary: '#e6c989', accent: '#c4955c' },
-  { name: 'Indigo',    primary: '#2a3854', secondary: '#5c6e8c', accent: '#2a3854' },
-  { name: 'Coral',     primary: '#b86b54', secondary: '#ff9f7a', accent: '#b86b54' },
-  { name: 'Amber',     primary: '#b89548', secondary: '#e6c486', accent: '#b89548' },
+  { name: 'Sunset',   primary: '#ff7a6b', secondary: '#ffa05c', tertiary: '#c44d8c' },
+  { name: 'Aurora',   primary: '#6fc8d1', secondary: '#8ce7c4', tertiary: '#b094e6' },
+  { name: 'Berry',    primary: '#c178c9', secondary: '#f491c9', tertiary: '#9180e3' },
+  { name: 'Citrus',   primary: '#ff9f7a', secondary: '#ffd166', tertiary: '#f87ca8' },
+  { name: 'Ocean',    primary: '#5a8fc4', secondary: '#6bbed1', tertiary: '#a99cdb' },
+  { name: 'Sage',     primary: '#7ea88d', secondary: '#a0b576', tertiary: '#9bc4ad' },
+  { name: 'Dusk',     primary: '#c4738e', secondary: '#d4a574', tertiary: '#7e6da8' },
+  { name: 'Mist',     primary: '#a3c0d6', secondary: '#c8b8e4', tertiary: '#f0bdd1' },
 ]
 
 // 文字一律白色（per design spec）
 const CARD_TEXT = '#ffffff'
 
-// 組漸層：cream 底 → 偏左上飽和色 → 偏右下副色光暈
+// 組三色暈染：cream 底 → 左上 primary、右上 secondary、下方 tertiary，三色互滲
 function paletteGradient(p) {
   return `
-    radial-gradient(circle at 28% 32%, ${p.primary} 0%, transparent 58%),
-    radial-gradient(circle at 72% 70%, ${p.secondary} 0%, transparent 55%),
+    radial-gradient(circle at 25% 28%, ${p.primary} 0%, transparent 52%),
+    radial-gradient(circle at 72% 25%, ${p.secondary} 0%, transparent 50%),
+    radial-gradient(circle at 50% 78%, ${p.tertiary} 0%, transparent 55%),
     linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)
   `
 }
@@ -56,7 +57,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
         aspectRatio: '3/4',
         transition: 'box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         boxShadow: hovered
-          ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.accent}33`
+          ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.primary}33`
           : '0 6px 16px rgba(0,0,0,0.06)',
         borderRadius: '20px',
         outline: 'none',
@@ -66,7 +67,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
       onFocus={e => { e.currentTarget.style.boxShadow = `0 28px 56px rgba(0,0,0,0.15), 0 0 0 3px #ff6b1a` }}
       onBlur={e => {
         e.currentTarget.style.boxShadow = hovered
-          ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.accent}33`
+          ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.primary}33`
           : '0 6px 16px rgba(0,0,0,0.06)'
       }}
     >

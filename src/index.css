@@ -77,6 +77,54 @@ body {
   border-radius: 8px;
 }
 
+/* ── Grain noise overlay（給卡牌加顆粒質感）── */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+  z-index: 1;
+}
+
+/* ── Blob breathing animation（卡牌 hover 時漸層緩慢呼吸位移）── */
+@keyframes blobBreathe {
+  0%, 100% { transform: scale(1) translate(0%, 0%); }
+  50%      { transform: scale(1.12) translate(3%, -2%); }
+}
+.gradient-blob {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  z-index: 0;
+}
+.card-hover-target:hover .gradient-blob,
+.card-hover-target:focus-visible .gradient-blob {
+  animation: blobBreathe 4s ease-in-out infinite;
+}
+
+/* ── 卡內容元件統一拉到 blob/grain 之上 ── */
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── 襯線反差小工具（用在英文 eyebrow / tagline 反差）── */
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
 /* ── Mobile breakpoints ── */
 @media (max-width: 640px) {
   body { font-size: 13px; }

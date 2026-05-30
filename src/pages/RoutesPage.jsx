@@ -74,16 +74,14 @@ export default function RoutesPage() {
             <div>
               {/* Eyebrow */}
               <div
+                className="serif-italic"
                 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '11px',
-                  letterSpacing: '0.2em',
+                  fontSize: '15px',
                   color: '#9d8df1',
-                  textTransform: 'uppercase',
                   marginBottom: '8px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
+                  gap: '10px',
                 }}
               >
                 <span
@@ -109,7 +107,7 @@ export default function RoutesPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Roll the <span style={{ color: '#9d8df1' }}>Route</span>
+                Roll the <span className="serif-italic" style={{ color: '#9d8df1', fontWeight: 400 }}>Route</span>
               </h1>
             </div>
 

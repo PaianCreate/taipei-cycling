@@ -90,13 +90,14 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
       >
         {/* ── FRONT (face down) ── */}
         <div
+          className="card-hover-target"
           style={{
             position: 'absolute',
             inset: 0,
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
             borderRadius: '20px',
-            background: paletteGradient(palette),
+            background: 'linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -104,8 +105,13 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             overflow: 'hidden',
           }}
         >
+          {/* 漸層 blob 層（hover 時呼吸） */}
+          <div className="gradient-blob" style={{ background: paletteGradient(palette) }} />
+          {/* 顆粒材質 */}
+          <div className="grain" />
           {/* big decorative text */}
           <div
+            className="card-content"
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(52px, 8vw, 80px)',
@@ -121,7 +127,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
           </div>
 
           {/* route number bottom */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <div className="card-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <span
               style={{
                 fontFamily: 'var(--font-display)',
@@ -147,17 +153,6 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             </svg>
           </div>
 
-          {/* subtle bg circle */}
-          <div style={{
-            position: 'absolute',
-            bottom: '-30%',
-            right: '-20%',
-            width: '80%',
-            paddingBottom: '80%',
-            borderRadius: '50%',
-            background: CARD_TEXT,
-            opacity: 0.06,
-          }} />
         </div>
 
         {/* ── BACK (route info) ── */}
@@ -351,7 +346,7 @@ function CardCarousel({ rotation, phase, route }) {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
                   borderRadius: '20px',
-                  background: paletteGradient(p),
+                  background: 'linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)',
                   padding: '20px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -359,7 +354,9 @@ function CardCarousel({ rotation, phase, route }) {
                   overflow: 'hidden',
                   boxShadow: '0 16px 40px rgba(0,0,0,0.12)',
                 }}>
-                  <div style={{
+                  <div className="gradient-blob" style={{ background: paletteGradient(p), animation: 'blobBreathe 6s ease-in-out infinite' }} />
+                  <div className="grain" />
+                  <div className="card-content" style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(48px, 7vw, 72px)',
                     fontWeight: 900,
@@ -368,16 +365,6 @@ function CardCarousel({ rotation, phase, route }) {
                     textTransform: 'uppercase',
                     letterSpacing: '-0.03em',
                   }}>Flip<br />It</div>
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '-30%',
-                    right: '-20%',
-                    width: '80%',
-                    paddingBottom: '80%',
-                    borderRadius: '50%',
-                    background: CARD_TEXT,
-                    opacity: 0.06,
-                  }} />
                 </div>
                 {/* 背面 — 路線資訊（只渲染在正中央那張） */}
                 {isFront && route && (
@@ -429,14 +416,11 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       }} />
 
       {/* eyebrow */}
-      <div style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: '11px',
-        letterSpacing: '0.25em',
+      <div className="serif-italic" style={{
+        fontSize: '18px',
         color: '#86868b',
-        textTransform: 'uppercase',
       }}>
-        今天騎哪條？
+        Today's ride?
       </div>
 
       {/* persistent 3D carousel */}
@@ -495,7 +479,7 @@ function SurpriseCard({ route, palette }) {
   return (
     <div style={{
       borderRadius: '20px',
-      background: paletteGradient(palette),
+      background: 'linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)',
       padding: '22px',
       display: 'flex',
       flexDirection: 'column',
@@ -505,10 +489,10 @@ function SurpriseCard({ route, palette }) {
       position: 'relative',
       boxShadow: `0 20px 60px ${palette.primary}33`,
     }}>
-      {/* deco circle */}
-      <div style={{ position: 'absolute', bottom: '-25%', right: '-25%', width: '70%', paddingBottom: '70%', borderRadius: '50%', background: CARD_TEXT, opacity: 0.07 }} />
+      <div className="gradient-blob" style={{ background: paletteGradient(palette), animation: 'blobBreathe 7s ease-in-out infinite' }} />
+      <div className="grain" />
 
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className="card-content" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: CARD_TEXT, opacity: 0.7, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
           #{String(route.id).padStart(2,'0')} · {cat?.label}
         </span>
@@ -522,23 +506,23 @@ function SurpriseCard({ route, palette }) {
         </span>
       </div>
 
-      <div style={{ flex: 1 }}>
+      <div className="card-content" style={{ flex: 1 }}>
         <div style={{ fontFamily: 'var(--font-cjk)', fontSize: '22px', fontWeight: 700, color: CARD_TEXT, lineHeight: 1.2, marginBottom: '4px' }}>
           {route.zh}
         </div>
-        <div style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: CARD_TEXT, opacity: 0.5, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+        <div className="serif-italic" style={{ fontSize: '14px', color: CARD_TEXT, opacity: 0.7, letterSpacing: '0.02em' }}>
           {route.en}
         </div>
       </div>
 
-      <div style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '8px', overflow: 'hidden' }}>
+      <div className="card-content" style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '8px', overflow: 'hidden' }}>
         <svg viewBox="0 0 174 120" style={{ display: 'block', width: '100%', height: '56px' }} preserveAspectRatio="none">
           <path d={`${route.svgPath} L174,120 L0,120 Z`} fill={CARD_TEXT} opacity="0.15" />
           <path d={route.svgPath} fill="none" stroke={CARD_TEXT} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
         </svg>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '6px' }}>
+      <div className="card-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '6px' }}>
         {[
           { v: route.km, u: 'km' },
           { v: route.elev + 'm', u: '爬升' },
@@ -552,6 +536,7 @@ function SurpriseCard({ route, palette }) {
       </div>
 
       <a
+        className="card-content"
         href={route.gmapUrl}
         target="_blank"
         rel="noopener noreferrer"
@@ -615,14 +600,11 @@ export default function HomePage() {
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <div style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '11px',
-              letterSpacing: '0.22em',
+            <div className="serif-italic" style={{
+              fontSize: '15px',
               color: '#9d8df1',
-              textTransform: 'uppercase',
               marginBottom: '6px',
-              display: 'flex', alignItems: 'center', gap: '8px',
+              display: 'flex', alignItems: 'center', gap: '10px',
             }}>
               <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#9d8df1' }} />
               Taipei Classic Cycling Routes
@@ -637,7 +619,7 @@ export default function HomePage() {
               textTransform: 'uppercase',
               whiteSpace: 'nowrap',
             }}>
-              Roll the <span style={{ color: '#9d8df1' }}>Route</span>
+              Roll the <span className="serif-italic" style={{ color: '#9d8df1', fontWeight: 400 }}>Route</span>
             </h1>
           </div>
           <a
@@ -683,7 +665,7 @@ export default function HomePage() {
             textTransform: 'uppercase',
             color: '#1d1d1f',
           }}>
-            <span style={{ color: '#9d8df1' }}>40</span> Routes to Nowhere
+            <span style={{ color: '#9d8df1' }}>40</span> Routes <span className="serif-italic" style={{ fontWeight: 400, textTransform: 'none' }}>to Nowhere</span>
           </h2>
           <span style={{
             fontFamily: 'var(--font-display)',

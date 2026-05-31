@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { CATEGORY_CONFIG, DIFFICULTY_CONFIG, SVG_VIEWBOX } from '../data/routes.js'
+import { downloadGpx } from '../utils/gpx.js'
 
 export default function RouteModal({ route, onClose }) {
   useEffect(() => {
@@ -387,15 +388,42 @@ export default function RouteModal({ route, onClose }) {
           ))}
         </div>
 
-        {/* Footer CTA */}
+        {/* Footer CTA：Maps + GPX */}
         <div
           style={{
-            borderTop: '1px solid rgba(255,255,255,0.06)',
+            borderTop: '1px solid rgba(0,0,0,0.06)',
             padding: '14px 24px',
             display: 'flex',
             justifyContent: 'flex-end',
+            gap: '10px',
+            flexWrap: 'wrap',
           }}
         >
+          <button
+            onClick={() => downloadGpx(route)}
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '13px',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#9d8df1',
+              background: 'rgba(157,141,241,0.1)',
+              border: '1px solid rgba(157,141,241,0.3)',
+              borderRadius: '10px',
+              padding: '10px 18px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v12m-5-5l5 5 5-5M4 21h16"/>
+            </svg>
+            下載 GPX
+          </button>
           <a
             href={route.gmapUrl}
             target="_blank"

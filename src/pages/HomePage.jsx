@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { ROUTES, CATEGORY_CONFIG, DIFFICULTY_CONFIG } from '../data/routes.js'
+import { downloadGpx } from '../utils/gpx.js'
 
 // ─── Card palette：三色暈染漸層（彩度提高版）── primary 兼當 hover/maps 主色 ───
 const CARD_PALETTES = [
@@ -281,27 +282,46 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             ))}
           </div>
 
-          {/* maps link */}
-          <a
-            href={route.gmapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={e => e.stopPropagation()}
-            style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
-              fontFamily: 'var(--font-display)',
-              fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-              color: '#9d8df1', background: 'rgba(157,141,241,0.1)',
-              border: '1px solid rgba(157,141,241,0.3)', borderRadius: '6px',
-              padding: '6px', textDecoration: 'none', flexShrink: 0,
-              transition: 'background 0.15s',
-            }}
-          >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            Google Maps
-          </a>
+          {/* maps + gpx 雙按鈕 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', flexShrink: 0 }}>
+            <a
+              href={route.gmapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '10px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: '#9d8df1', background: 'rgba(157,141,241,0.1)',
+                border: '1px solid rgba(157,141,241,0.3)', borderRadius: '6px',
+                padding: '6px 4px', textDecoration: 'none',
+                transition: 'background 0.15s',
+              }}
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              Maps
+            </a>
+            <button
+              onClick={e => { e.stopPropagation(); downloadGpx(route) }}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '10px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: '#9d8df1', background: 'rgba(157,141,241,0.1)',
+                border: '1px solid rgba(157,141,241,0.3)', borderRadius: '6px',
+                padding: '6px 4px', cursor: 'pointer',
+                transition: 'background 0.15s',
+              }}
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3v12m-5-5l5 5 5-5M4 21h16"/>
+              </svg>
+              GPX
+            </button>
+          </div>
         </div>
       </div>
       </div>
@@ -587,25 +607,42 @@ function SurpriseCard({ route, palette }) {
         ))}
       </div>
 
-      <a
-        className="card-content"
-        href={route.gmapUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
-          fontFamily: 'var(--font-display)', fontSize: '12px', fontWeight: 700,
-          letterSpacing: '0.1em', textTransform: 'uppercase',
-          color: palette.primary, background: '#ffffff',
-          borderRadius: '999px', padding: '10px', textDecoration: 'none',
-          boxShadow: `0 4px 16px rgba(0,0,0,0.12)`,
-        }}
-      >
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-        </svg>
-        開啟導航
-      </a>
+      <div className="card-content" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+        <a
+          href={route.gmapUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+            fontFamily: 'var(--font-display)', fontSize: '11px', fontWeight: 700,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: palette.primary, background: '#ffffff',
+            borderRadius: '999px', padding: '10px', textDecoration: 'none',
+            boxShadow: `0 4px 16px rgba(0,0,0,0.12)`,
+          }}
+        >
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          開啟導航
+        </a>
+        <button
+          onClick={() => downloadGpx(route)}
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+            fontFamily: 'var(--font-display)', fontSize: '11px', fontWeight: 700,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: '#ffffff', background: 'rgba(0,0,0,0.25)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            borderRadius: '999px', padding: '10px', cursor: 'pointer',
+          }}
+        >
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3v12m-5-5l5 5 5-5M4 21h16"/>
+          </svg>
+          下載 GPX
+        </button>
+      </div>
     </div>
   )
 }

@@ -121,6 +121,30 @@ body {
   letter-spacing: 0;
 }
 
+/* ── Toast（GPX 下載步驟提示）── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+.gpx-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  background: #1d1d1f;
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: var(--font-cjk);
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 340px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  z-index: 2000;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gpx-toast b { color: #b09cf5; font-weight: 600; }
+
 /* ── Scroll down indicator（向下提示動畫）── */
 @keyframes scrollHint {
   0%   { transform: translateY(0); opacity: 0.4; }

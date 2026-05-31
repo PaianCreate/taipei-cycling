@@ -96,7 +96,7 @@ export default function RouteModal({ route, onClose }) {
                   fontFamily: 'var(--font-cjk)',
                   fontSize: '24px',
                   fontWeight: 700,
-                  color: '#1d1d1f',
+                  color: '#333333',
                   lineHeight: 1.2,
                   marginBottom: '4px',
                 }}
@@ -237,7 +237,7 @@ export default function RouteModal({ route, onClose }) {
                     fontFamily: 'var(--font-display)',
                     fontSize: '20px',
                     fontWeight: 700,
-                    color: color ?? '#1d1d1f',
+                    color: color ?? '#333333',
                     lineHeight: 1,
                     letterSpacing: '-0.02em',
                   }}

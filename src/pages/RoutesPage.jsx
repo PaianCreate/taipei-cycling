@@ -102,7 +102,7 @@ export default function RoutesPage() {
                   fontWeight: 800,
                   lineHeight: 0.95,
                   letterSpacing: '-0.02em',
-                  color: '#1d1d1f',
+                  color: '#333333',
                   textTransform: 'uppercase',
                   whiteSpace: 'nowrap',
                 }}
@@ -122,7 +122,7 @@ export default function RoutesPage() {
                   background: '#ffffff',
                   border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '10px',
-                  color: '#1d1d1f',
+                  color: '#333333',
                   fontFamily: 'var(--font-cjk)',
                   fontSize: '13px',
                   padding: '10px 16px 10px 36px',

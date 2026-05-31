@@ -212,7 +212,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               fontFamily: 'var(--font-cjk)',
               fontSize: 'clamp(13px, 2.2vw, 20px)',
               fontWeight: 700,
-              color: '#1d1d1f',
+              color: '#333333',
               lineHeight: 1.15,
               marginBottom: '2px',
               overflow: 'hidden',
@@ -259,7 +259,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               { v: `${route.avgGrade}%`, u: 'avg' },
             ].map(({ v, u }) => (
               <div key={u} style={{ background: '#f2f2f7', borderRadius: '8px', padding: '4px 2px', textAlign: 'center', border: '1px solid rgba(0,0,0,0.08)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '14px', fontWeight: 700, color: '#1d1d1f', lineHeight: 1 }}>{v}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '14px', fontWeight: 700, color: '#333333', lineHeight: 1 }}>{v}</div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '8px', color: '#86868b', letterSpacing: '0.08em', marginTop: '2px', textTransform: 'uppercase' }}>{u}</div>
               </div>
             ))}
@@ -365,7 +365,7 @@ function CardCarousel({ rotation, phase, route }) {
                     color: CARD_TEXT,
                     textTransform: 'uppercase',
                     letterSpacing: '-0.03em',
-                  }}>Flip<br />It</div>
+                  }}>Roll<br />ing</div>
                 </div>
                 {/* 背面 — 路線資訊（只渲染在正中央那張） */}
                 {isFront && route && (
@@ -616,7 +616,7 @@ export default function HomePage() {
               fontWeight: 900,
               lineHeight: 0.9,
               letterSpacing: '-0.02em',
-              color: '#1d1d1f',
+              color: '#333333',
               textTransform: 'uppercase',
               whiteSpace: 'nowrap',
             }}>
@@ -664,7 +664,7 @@ export default function HomePage() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
             textTransform: 'uppercase',
-            color: '#1d1d1f',
+            color: '#333333',
           }}>
             <span style={{ color: '#9d8df1' }}>40</span> Routes <span className="serif-italic" style={{ fontWeight: 400, textTransform: 'none' }}>to Nowhere</span>
           </h2>

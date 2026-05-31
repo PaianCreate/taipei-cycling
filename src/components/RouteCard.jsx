@@ -77,7 +77,7 @@ export default function RouteCard({ route, onClick }) {
                 fontFamily: 'var(--font-cjk)',
                 fontSize: '17px',
                 fontWeight: 700,
-                color: '#1d1d1f',
+                color: '#333333',
                 lineHeight: 1.25,
                 marginBottom: '3px',
               }}
@@ -229,7 +229,7 @@ export default function RouteCard({ route, onClick }) {
                   fontFamily: 'var(--font-display)',
                   fontSize: '18px',
                   fontWeight: 700,
-                  color: '#1d1d1f',
+                  color: '#333333',
                   lineHeight: 1,
                   letterSpacing: '-0.02em',
                 }}

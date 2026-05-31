@@ -74,7 +74,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
         position: 'relative',
         ...style,
       }}
-      onFocus={e => { e.currentTarget.style.boxShadow = `0 28px 56px rgba(0,0,0,0.15), 0 0 0 3px #ff6b1a` }}
+      onFocus={e => { e.currentTarget.style.boxShadow = `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.primary}44` }}
       onBlur={e => {
         e.currentTarget.style.boxShadow = hovered
           ? `0 28px 56px rgba(0,0,0,0.15), 0 0 0 1px ${palette.primary}33`
@@ -177,7 +177,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             transform: 'rotateY(180deg)',
             borderRadius: '20px',
             background: '#ffffff',
-            border: `1px solid ${cat?.color ?? '#9d8df1'}44`,
+            border: '1px solid rgba(0,0,0,0.06)',
             display: 'flex',
             flexDirection: 'column',
             padding: '12px',
@@ -710,7 +710,7 @@ export default function HomePage() {
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
           }}>
-            點牌翻面查看
+            點牌翻面抽出騎車路線
           </span>
         </div>
 

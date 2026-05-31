@@ -112,15 +112,11 @@ body {
   z-index: 2;
 }
 
-/* ── italic 反差小工具（用在英文 eyebrow / tagline 反差，sans-serif italic） ── */
-.serif-italic {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0;
-}
+/* ── 細字反差小工具（英文 eyebrow / tagline，全站無斜體） ── */
+.serif-italic,
 .serif {
   font-family: var(--font-display);
+  font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
 }

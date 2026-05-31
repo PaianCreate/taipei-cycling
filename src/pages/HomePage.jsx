@@ -359,13 +359,13 @@ function CardCarousel({ rotation, phase, route }) {
                   <div className="grain" />
                   <div className="card-content" style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(48px, 7vw, 72px)',
-                    fontWeight: 900,
-                    lineHeight: 0.88,
+                    fontSize: 'clamp(20px, 2.6vw, 28px)',
+                    fontWeight: 400,
+                    lineHeight: 1,
                     color: CARD_TEXT,
                     textTransform: 'uppercase',
-                    letterSpacing: '-0.03em',
-                  }}>Roll<br />ing</div>
+                    letterSpacing: '0.04em',
+                  }}>Rolling</div>
                 </div>
                 {/* 背面 — 路線資訊（只渲染在正中央那張） */}
                 {isFront && route && (

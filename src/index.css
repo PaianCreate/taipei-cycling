@@ -146,9 +146,9 @@ body {
   .max-w-7xl { padding-left: 16px !important; padding-right: 16px !important; }
   /* 縮小 3D carousel 整體尺寸，避免側邊卡牌爆出視窗 */
   .carousel-wrapper {
-    transform: scale(0.62);
+    transform: scale(0.72);
     transform-origin: center;
-    margin: -56px auto !important; /* 負 margin 收回 scale 造成的空白 */
+    margin: -38px auto !important; /* scale 0.72 → 用較小負 margin 收空白並拉近上下 20px */
   }
   /* 40 ROUTES 大標 / 小標換行 */
   .routes-heading {

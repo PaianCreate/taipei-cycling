@@ -150,4 +150,10 @@ body {
     transform-origin: center;
     margin: -56px auto !important; /* 負 margin 收回 scale 造成的空白 */
   }
+  /* 40 ROUTES 大標 / 小標換行 */
+  .routes-heading {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
 }

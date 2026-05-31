@@ -370,6 +370,7 @@ function CardCarousel({ rotation, phase, route }) {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   overflow: 'hidden',
+                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                   boxShadow: '0 16px 40px rgba(0,0,0,0.12)',
                 }}>
                   <div className="gradient-blob" style={{ background: paletteGradient(p), animation: 'blobBreathe 6s ease-in-out infinite' }} />
@@ -394,6 +395,7 @@ function CardCarousel({ rotation, phase, route }) {
                     transform: 'rotateY(180deg) translateZ(1px)',
                     borderRadius: '20px',
                     overflow: 'hidden',
+                    WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                   }}>
                     <SurpriseCard route={route} palette={getPalette(route.id)} />
                   </div>
@@ -697,7 +699,7 @@ export default function HomePage() {
       {/* ── Section 2: Waterfall grid ── */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '48px 24px 80px' }}>
         {/* section header */}
-        <div style={{ marginBottom: '28px', display: 'flex', alignItems: 'baseline', gap: '16px' }}>
+        <div className="routes-heading" style={{ marginBottom: '28px', display: 'flex', alignItems: 'baseline', gap: '16px', flexWrap: 'wrap' }}>
           <h2 style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(28px, 5vw, 44px)',

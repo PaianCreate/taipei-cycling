@@ -312,7 +312,16 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
 // ─── 8-card 3D coverflow carousel ──────────────────────────────────
 // 持續顯示在頁面上；按鈕觸發旋轉 2 秒後，正中央那張翻面顯示路線
 function CardCarousel({ rotation, phase, route }) {
-  const radius = 300 // 卡牌離旋轉中心的距離（拉開不重疊）
+  // 手機版半徑縮一點點，讓左右卡牌距離更靠近
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+  const radius = isMobile ? 280 : 300
   const showRouteInfo = phase === 'flipping' || phase === 'show'
 
   return (

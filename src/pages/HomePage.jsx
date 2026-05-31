@@ -107,6 +107,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             inset: 0,
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
+            transform: 'translateZ(1px)', // iOS Safari 修：強制 3D 深度避免背面透視
             borderRadius: '20px',
             background: 'linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)',
             display: 'flex',
@@ -174,7 +175,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             inset: 0,
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
+            transform: 'rotateY(180deg) translateZ(1px)',
             borderRadius: '20px',
             background: '#ffffff',
             border: '1px solid rgba(0,0,0,0.06)',
@@ -358,6 +359,7 @@ function CardCarousel({ rotation, phase, route }) {
                   inset: 0,
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
+                  transform: 'translateZ(1px)',
                   borderRadius: '20px',
                   background: 'linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)',
                   padding: '20px',
@@ -386,7 +388,7 @@ function CardCarousel({ rotation, phase, route }) {
                     inset: 0,
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)',
+                    transform: 'rotateY(180deg) translateZ(1px)',
                     borderRadius: '20px',
                     overflow: 'hidden',
                   }}>

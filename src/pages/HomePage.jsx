@@ -86,6 +86,9 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
         position: 'absolute',
         inset: 0,
         perspective: '1000px',
+        borderRadius: '20px',
+        overflow: 'hidden',
+        WebkitMaskImage: '-webkit-radial-gradient(white, black)', // iOS 強制圓角 clip
         transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         ...(hovered ? { transform: 'translateY(-8px) scale(1.02)' } : {}),
       }}>

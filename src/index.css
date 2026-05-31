@@ -121,6 +121,25 @@ body {
   letter-spacing: 0;
 }
 
+/* ── Scroll down indicator（向下提示動畫）── */
+@keyframes scrollHint {
+  0%   { transform: translateY(0); opacity: 0.4; }
+  50%  { transform: translateY(8px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.4; }
+}
+.scroll-hint {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #86868b;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: scrollHint 1.6s ease-in-out infinite;
+}
+
 /* ── Mobile breakpoints ── */
 @media (max-width: 640px) {
   body { font-size: 13px; }

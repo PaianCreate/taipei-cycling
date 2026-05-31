@@ -328,7 +328,7 @@ function CardCarousel({ rotation, phase, route }) {
             <div key={i} className="carousel-card" style={{
               position: 'absolute',
               inset: 0,
-              transform: `rotateY(${angle}deg) translateZ(${radius}px) ${frontScaled ? 'scale(1.3)' : 'scale(1)'}`,
+              transform: `rotateY(${angle}deg) translateZ(${radius}px) ${frontScaled ? 'scale(0.8)' : 'scale(1)'}`,
               transformStyle: 'preserve-3d',
               opacity: sideFaded ? 0 : 1,
               transition: 'opacity 0.5s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -401,8 +401,8 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: '96px',
-      padding: '80px 24px 64px',
+      gap: '40px',
+      padding: '32px 24px 48px',
       position: 'relative',
     }}>
       {/* bg glow */}
@@ -418,13 +418,25 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       }} />
 
       {/* eyebrow */}
-      <div style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: '24px',
-        fontWeight: 400,
-        color: '#333333',
-      }}>
-        Roll Your Route
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '24px',
+          fontWeight: 900,
+          color: '#333333',
+          letterSpacing: '-0.01em',
+        }}>
+          Roll Your Route
+        </div>
+        <div style={{
+          fontFamily: 'var(--font-cjk)',
+          fontSize: '13px',
+          color: '#a8a8ad',
+          marginTop: '6px',
+          fontWeight: 400,
+        }}>
+          點擊 Surprise me 骰出你的單車路線
+        </div>
       </div>
 
       {/* persistent 3D carousel */}
@@ -472,6 +484,14 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
           點擊下方卡牌也可自己選
         </div>
       )}
+
+      {/* 向下滾動指示 */}
+      <div className="scroll-hint" aria-hidden="true">
+        <span>scroll</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
     </div>
   )
 }

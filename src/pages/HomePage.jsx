@@ -17,11 +17,12 @@ const CARD_PALETTES = [
 const CARD_TEXT = '#ffffff'
 
 // 組三色暈染：cream 底 → 左上 primary、右上 secondary、下方 tertiary，三色互滲
+// 漸層 stop 拉到 70%+ 確保小卡牌也飽和
 function paletteGradient(p) {
   return `
-    radial-gradient(circle at 25% 28%, ${p.primary} 0%, transparent 52%),
-    radial-gradient(circle at 72% 25%, ${p.secondary} 0%, transparent 50%),
-    radial-gradient(circle at 50% 78%, ${p.tertiary} 0%, transparent 55%),
+    radial-gradient(circle at 25% 28%, ${p.primary} 0%, transparent 70%),
+    radial-gradient(circle at 72% 25%, ${p.secondary} 0%, transparent 68%),
+    radial-gradient(circle at 50% 78%, ${p.tertiary} 0%, transparent 72%),
     linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)
   `
 }

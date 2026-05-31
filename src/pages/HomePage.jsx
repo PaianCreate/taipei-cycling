@@ -282,8 +282,8 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             ))}
           </div>
 
-          {/* maps + gpx 雙按鈕 */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', flexShrink: 0 }}>
+          {/* maps + gpx pill 按鈕 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', flexShrink: 0 }}>
             <a
               href={route.gmapUrl}
               target="_blank"
@@ -292,10 +292,10 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
                 fontFamily: 'var(--font-display)',
-                fontSize: '10px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
-                color: '#9d8df1', background: 'rgba(157,141,241,0.1)',
-                border: '1px solid rgba(157,141,241,0.3)', borderRadius: '6px',
-                padding: '6px 4px', textDecoration: 'none',
+                fontSize: '11px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: '#ffffff', background: '#9d8df1',
+                border: 'none', borderRadius: '999px',
+                padding: '8px 12px', textDecoration: 'none',
                 transition: 'background 0.15s',
               }}
             >
@@ -309,10 +309,10 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
                 fontFamily: 'var(--font-display)',
-                fontSize: '10px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
-                color: '#9d8df1', background: 'rgba(157,141,241,0.1)',
-                border: '1px solid rgba(157,141,241,0.3)', borderRadius: '6px',
-                padding: '6px 4px', cursor: 'pointer',
+                fontSize: '11px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: '#9d8df1', background: 'transparent',
+                border: '1px solid #9d8df1', borderRadius: '999px',
+                padding: '8px 12px', cursor: 'pointer',
                 transition: 'background 0.15s',
               }}
             >

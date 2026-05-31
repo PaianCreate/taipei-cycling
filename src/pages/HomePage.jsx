@@ -418,11 +418,13 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       }} />
 
       {/* eyebrow */}
-      <div className="serif-italic" style={{
-        fontSize: '18px',
-        color: '#86868b',
+      <div style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: '24px',
+        fontWeight: 400,
+        color: '#333333',
       }}>
-        Today's ride?
+        Roll Your Route
       </div>
 
       {/* persistent 3D carousel */}

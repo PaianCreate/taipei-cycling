@@ -620,22 +620,22 @@ export default function HomePage() {
       <header style={{
         borderBottom: '1px solid rgba(0,0,0,0.08)',
         background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%)',
-        padding: '28px 0 24px',
+        padding: '20px 0 17px',
       }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '11px' }}>
           <div>
             <div className="serif-italic" style={{
-              fontSize: '15px',
+              fontSize: '11px',
               color: '#9d8df1',
-              marginBottom: '6px',
-              display: 'flex', alignItems: 'center', gap: '10px',
+              marginBottom: '4px',
+              display: 'flex', alignItems: 'center', gap: '7px',
             }}>
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#9d8df1' }} />
+              <span style={{ display: 'inline-block', width: '17px', height: '1px', background: '#9d8df1' }} />
               Taipei Classic Cycling Routes
             </div>
             <h1 style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(36px, 7vw, 64px)',
+              fontSize: 'clamp(25px, 4.9vw, 45px)',
               fontWeight: 900,
               lineHeight: 0.9,
               letterSpacing: '-0.02em',
@@ -651,10 +651,10 @@ export default function HomePage() {
             onClick={e => { e.preventDefault(); window.__navigate?.('routes') }}
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '13px', fontWeight: 700, letterSpacing: '0.1em',
+              fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em',
               textTransform: 'uppercase', color: '#86868b',
-              border: '1px solid rgba(0,0,0,0.12)', borderRadius: '10px',
-              padding: '10px 20px', textDecoration: 'none',
+              border: '1px solid rgba(0,0,0,0.12)', borderRadius: '7px',
+              padding: '7px 14px', textDecoration: 'none',
               transition: 'all 0.15s ease',
             }}
             onMouseEnter={e => { e.currentTarget.style.color = '#faf6ee'; e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)' }}

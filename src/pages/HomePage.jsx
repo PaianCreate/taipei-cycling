@@ -328,7 +328,7 @@ function CardCarousel({ rotation, phase, route }) {
             <div key={i} className="carousel-card" style={{
               position: 'absolute',
               inset: 0,
-              transform: `rotateY(${angle}deg) translateZ(${radius}px) ${frontScaled ? 'scale(0.8)' : 'scale(1)'}`,
+              transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
               transformStyle: 'preserve-3d',
               opacity: sideFaded ? 0 : 1,
               transition: 'opacity 0.5s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -401,8 +401,8 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: '40px',
-      padding: '32px 24px 48px',
+      gap: '64px',
+      padding: '56px 24px 72px',
       position: 'relative',
     }}>
       {/* bg glow */}
@@ -432,8 +432,9 @@ function SurpriseSpotlight({ route, onNext, phase, rotation }) {
           fontFamily: 'var(--font-cjk)',
           fontSize: '13px',
           color: '#a8a8ad',
-          marginTop: '6px',
+          marginTop: '10px',
           fontWeight: 400,
+          letterSpacing: '0.02em',
         }}>
           點擊 Surprise me 骰出你的單車路線
         </div>

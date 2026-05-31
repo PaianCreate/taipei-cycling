@@ -1,34 +1,43 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { ROUTES, CATEGORY_CONFIG, DIFFICULTY_CONFIG } from '../data/routes.js'
 
-// ─── Card palette：每張卡用「三色」暈染漸層（dreamy bloom）── primary 兼當 hover/maps 主色 ───
+// ─── Card palette：三色暈染漸層（彩度提高版）── primary 兼當 hover/maps 主色 ───
 const CARD_PALETTES = [
-  { name: 'Sunset',   primary: '#ff7a6b', secondary: '#ffa05c', tertiary: '#c44d8c' },
-  { name: 'Aurora',   primary: '#6fc8d1', secondary: '#8ce7c4', tertiary: '#b094e6' },
-  { name: 'Berry',    primary: '#c178c9', secondary: '#f491c9', tertiary: '#9180e3' },
-  { name: 'Citrus',   primary: '#ff9f7a', secondary: '#ffd166', tertiary: '#f87ca8' },
-  { name: 'Ocean',    primary: '#5a8fc4', secondary: '#6bbed1', tertiary: '#a99cdb' },
-  { name: 'Sage',     primary: '#7ea88d', secondary: '#a0b576', tertiary: '#9bc4ad' },
-  { name: 'Dusk',     primary: '#c4738e', secondary: '#d4a574', tertiary: '#7e6da8' },
-  { name: 'Mist',     primary: '#a3c0d6', secondary: '#c8b8e4', tertiary: '#f0bdd1' },
+  { name: 'Sunset',   primary: '#ff5a47', secondary: '#ff8c38', tertiary: '#b03478' },
+  { name: 'Aurora',   primary: '#3fb8c4', secondary: '#5eddb0', tertiary: '#9070e0' },
+  { name: 'Berry',    primary: '#b556c0', secondary: '#f56fb8', tertiary: '#6e60e0' },
+  { name: 'Citrus',   primary: '#ff8550', secondary: '#ffc845', tertiary: '#f55fa0' },
+  { name: 'Ocean',    primary: '#3673b8', secondary: '#3eb8d0', tertiary: '#8a78d8' },
+  { name: 'Sage',     primary: '#5a9670', secondary: '#9ab854', tertiary: '#6fbc92' },
+  { name: 'Dusk',     primary: '#c0506e', secondary: '#d49050', tertiary: '#6850a8' },
+  { name: 'Mist',     primary: '#7aafd0', secondary: '#b89cdf', tertiary: '#ec9cc0' },
 ]
 
 // 文字一律白色（per design spec）
 const CARD_TEXT = '#ffffff'
 
 // 組三色暈染：cream 底 → 左上 primary、右上 secondary、下方 tertiary，三色互滲
-// 漸層 stop 拉到 70%+ 確保小卡牌也飽和
+// stop 拉到 80%+ 提高飽和度
 function paletteGradient(p) {
   return `
-    radial-gradient(circle at 25% 28%, ${p.primary} 0%, transparent 70%),
-    radial-gradient(circle at 72% 25%, ${p.secondary} 0%, transparent 68%),
-    radial-gradient(circle at 50% 78%, ${p.tertiary} 0%, transparent 72%),
+    radial-gradient(circle at 25% 28%, ${p.primary} 0%, transparent 80%),
+    radial-gradient(circle at 72% 25%, ${p.secondary} 0%, transparent 78%),
+    radial-gradient(circle at 50% 78%, ${p.tertiary} 0%, transparent 82%),
     linear-gradient(135deg, #faf6ee 0%, #ffffff 100%)
   `
 }
 
+// 40 張卡牌的 palette index 打散，避免同欄/同列重複
+const SHUFFLED_PALETTE = [
+  3, 0, 6, 4, 1, 7, 2, 5,    // #01-08
+  5, 2, 7, 0, 4, 1, 6, 3,    // #09-16
+  1, 5, 0, 6, 3, 7, 4, 2,    // #17-24
+  7, 4, 2, 5, 6, 0, 1, 3,    // #25-32
+  4, 6, 1, 7, 2, 3, 0, 5,    // #33-40
+]
 function getPalette(id) {
-  return CARD_PALETTES[(id - 1) % CARD_PALETTES.length]
+  const idx = SHUFFLED_PALETTE[(id - 1) % SHUFFLED_PALETTE.length] ?? 0
+  return CARD_PALETTES[idx]
 }
 
 // ─── Single flip card ───────────────────────────────────────────────
@@ -105,6 +114,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             justifyContent: 'space-between',
             padding: '20px',
             overflow: 'hidden',
+            pointerEvents: isFlipped ? 'none' : 'auto',
           }}
         >
           {/* 漸層 blob 層（hover 時呼吸） */}
@@ -116,12 +126,12 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             className="card-content"
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(52px, 8vw, 80px)',
-              fontWeight: 900,
-              lineHeight: 0.88,
-              color: CARD_TEXT,
+              fontSize: '32px',
+              fontWeight: 400,
+              lineHeight: 1,
+              color: '#ffffff',
               textTransform: 'uppercase',
-              letterSpacing: '-0.03em',
+              letterSpacing: '0.02em',
               userSelect: 'none',
             }}
           >
@@ -171,6 +181,7 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
             display: 'flex',
             flexDirection: 'column',
             padding: '12px',
+            pointerEvents: isFlipped ? 'auto' : 'none',
             overflow: 'hidden',
             gap: '6px',
           }}
@@ -197,10 +208,10 @@ function FlipCard({ route, isFlipped, onClick, style = {} }) {
               fontWeight: 700,
               letterSpacing: '0.1em',
               color: diff?.textColor,
-              background: diff?.bgColor,
-              border: `1px solid ${diff?.textColor}44`,
+              background: 'transparent',
+              border: `1px solid ${diff?.textColor}`,
               padding: '2px 7px',
-              borderRadius: '2px',
+              borderRadius: '6px',
               textTransform: 'uppercase',
             }}>
               {diff?.label}
@@ -524,8 +535,8 @@ function SurpriseCard({ route, palette }) {
         <span style={{
           fontFamily: 'var(--font-display)', fontSize: '10px', fontWeight: 700,
           letterSpacing: '0.1em', color: diff?.textColor,
-          background: diff?.bgColor, border: `1px solid ${diff?.textColor}55`,
-          padding: '2px 7px', borderRadius: '2px', textTransform: 'uppercase',
+          background: 'transparent', border: `1px solid ${diff?.textColor}`,
+          padding: '2px 7px', borderRadius: '6px', textTransform: 'uppercase',
         }}>
           {diff?.label}
         </span>
@@ -690,7 +701,7 @@ export default function HomePage() {
             textTransform: 'uppercase',
             color: '#333333',
           }}>
-            <span style={{ color: '#9d8df1' }}>40</span> Routes <span className="serif-italic" style={{ fontWeight: 400, textTransform: 'none' }}>to Nowhere</span>
+            <span style={{ color: '#9d8df1' }}>40</span> Routes <span className="serif-italic" style={{ fontWeight: 400, textTransform: 'none' }}>to NoWhere</span>
           </h2>
           <span style={{
             fontFamily: 'var(--font-display)',
@@ -705,11 +716,12 @@ export default function HomePage() {
 
         {/* 4-col masonry grid */}
         <div className="card-grid" style={{
-          columns: '4',
+          columns: '5',
           columnGap: '16px',
           columnFill: 'balance',
         }}>
           <style>{`
+            @media (max-width: 1280px) { .card-grid { columns: 4 !important; } }
             @media (max-width: 1024px) { .card-grid { columns: 3 !important; } }
             @media (max-width: 720px)  { .card-grid { columns: 2 !important; column-gap: 12px !important; } }
             .flip-card-wrap { break-inside: avoid; margin-bottom: 16px; -webkit-column-break-inside: avoid; page-break-inside: avoid; }
@@ -733,7 +745,7 @@ export default function HomePage() {
         textAlign: 'center',
       }}>
         <span style={{ fontFamily: 'var(--font-display)', fontSize: '11px', color: '#86868b', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-          40 Routes to Nowhere
+          40 Routes to NoWhere
         </span>
       </footer>
     </div>

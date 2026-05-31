@@ -120,7 +120,7 @@ export default function RouteModal({ route, onClose }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
               <div
                 style={{
-                  background: diff.bgColor,
+                  background: 'transparent',
                   color: diff.textColor,
                   fontFamily: 'var(--font-display)',
                   fontSize: '11px',
@@ -129,7 +129,7 @@ export default function RouteModal({ route, onClose }) {
                   textTransform: 'uppercase',
                   padding: '4px 10px',
                   borderRadius: '6px',
-                  border: `1px solid ${diff.textColor}44`,
+                  border: `1px solid ${diff.textColor}`,
                 }}
               >
                 {diff.label}

@@ -104,7 +104,7 @@ export default function RouteCard({ route, onClick }) {
           {/* Difficulty badge */}
           <div
             style={{
-              background: diff.bgColor,
+              background: 'transparent',
               color: diff.textColor,
               fontFamily: 'var(--font-display)',
               fontSize: '10px',
@@ -113,7 +113,7 @@ export default function RouteCard({ route, onClick }) {
               textTransform: 'uppercase',
               padding: '3px 8px',
               borderRadius: '8px',
-              border: `1px solid ${diff.textColor}44`,
+              border: `1px solid ${diff.textColor}`,
               whiteSpace: 'nowrap',
               flexShrink: 0,
             }}
